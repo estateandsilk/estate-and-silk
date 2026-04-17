@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Estate & Silk W.I.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: serif;
+      background: #f6efe7;
+      color: #3e372f;
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 80px 20px;
+    }
+    .card {
+      background: #fbf7f2;
+      border: 1px solid #e8e0d6;
+      border-radius: 30px;
+      padding: 60px 20px;
+      box-shadow: 0 20px 60px rgba(160,140,110,0.12);
+    }
+    h1 {
+      letter-spacing: 5px;
+    }
+    .wi {
+      letter-spacing: 6px;
+      margin-top: 10px;
+    }
+    .btn {
+      display: inline-block;
+      margin: 15px;
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+    }
+    .btn-dark {
+      background: #6d5c45;
+      color: white;
+    }
+    .btn-light {
+      border: 1px solid #cdbca4;
+      color: #6d5c45;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="card">
+    <h1>ESTATE & SILK</h1>
+    <div class="wi">W.I.</div>
+    <p>Timeless pieces, thoughtfully curated.</p>
+  </div>
+
+  <p style="margin-top:40px;">
+    Estate & Silk W.I. is a sisters-founded luxury resale boutique.<br>
+    Coming soon.
+  </p>
+
+  <div>
+    <a href="mailto:contact@estateandsilkwi.com" class="btn btn-dark">Contact</a>
+    <a href="https://instagram.com/estateandsilk" class="btn btn-light">@estateandsilk</a>
+  </div>
+
+</div>
+
+</body>
+</html>
