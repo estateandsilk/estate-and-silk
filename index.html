@@ -126,7 +126,26 @@ details {
   padding: 15px;
   border-radius: 14px;
 }
-  
+  .thumbs {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.thumbs img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #e8e0d6;
+  opacity: 0.8;
+}
+
+.thumbs img:hover {
+  opacity: 1;
+}
 </style>
 </head>
 
@@ -176,7 +195,13 @@ details {
     <!-- NEW PRODUCTS -->
 
     <div class="card">
-      <img src="CL 1 edit.png">
+       <!-- MAIN IMAGE -->
+  <img id="CL 1 edit-main" src="CL 1 edit.png">
+
+  <!-- THUMBNAILS -->
+  <div class="thumbs">
+    <img src="CL 2 edit.png" onclick="changeImage('CL 1 edit - main', this.src)">
+    </div>
       <h3>Christian Louboutin Posticha 80 Slingbacks</h3>
       <p class="price">TTD 4,250 | USD 625</p>
       <details>
@@ -224,6 +249,9 @@ function addToCart(item) {
   cartCount++;
   document.getElementById("cart").innerHTML =
     "Cart: " + cartCount + " items<br><a href='mailto:contact@estateandsilkwi.com' style='color:white;'>Checkout</a>";
+}
+  function changeImage(id, src) {
+  document.getElementById(id).src = src;
 }
 </script>
 
