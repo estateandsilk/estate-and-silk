@@ -17,7 +17,11 @@ body {
   background-attachment: fixed;
   color: #6d5c45;
 }
-
+h2, h3 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 /* NAV */
 nav {
   display: flex;
@@ -110,7 +114,7 @@ nav a {
   margin-top: 10px;
   color: #6d5c45;
 }
-<section id="contact" style="text-align:center; padding:80px 20px;">
+
   <h2>Contact</h2>
 
   <p style="margin-top:10px;">
@@ -133,7 +137,27 @@ details {
   font-size: 14px;
   color: #7a6d5a;
 }
+</section> <!-- end of shop -->
 
+<section id="contact" style="text-align:center; padding:80px 20px;">
+  <h2>Contact</h2>
+
+  <p style="margin-top:10px;">
+    For purchases, inquiries, or consignments:
+  </p>
+
+  <p style="margin-top:10px;">
+    <a href="mailto:estateandsilk@gmail.com" style="color:#6d5c45;">
+      estateandsilk@gmail.com
+    </a>
+  </p>
+
+  <p style="margin-top:10px;">
+    <a href="https://instagram.com/estateandsilk" target="_blank" style="color:#6d5c45;">
+      @estateandsilk
+    </a>
+  </p>
+</section>
 .cart {
   position: fixed;
   right: 20px;
@@ -264,7 +288,7 @@ details {
 </div>
 
 <script>
-<script>
+
 let cart = [];
 
 function addToCart(item) {
