@@ -1,74 +1,183 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Estate & Silk W.I.</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: serif;
-      background: #f6efe7;
-      color: #3e372f;
-      text-align: center;
-    }
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 80px 20px;
-    }
-    .card {
-      background: #fbf7f2;
-      border: 1px solid #e8e0d6;
-      border-radius: 30px;
-      padding: 60px 20px;
-      box-shadow: 0 20px 60px rgba(160,140,110,0.12);
-    }
-    h1 {
-      letter-spacing: 5px;
-    }
-    .wi {
-      letter-spacing: 6px;
-      margin-top: 10px;
-    }
-    .btn {
-      display: inline-block;
-      margin: 15px;
-      padding: 12px 30px;
-      border-radius: 50px;
-      text-decoration: none;
-    }
-    .btn-dark {
-      background: #6d5c45;
-      color: white;
-    }
-    .btn-light {
-      border: 1px solid #cdbca4;
-      color: #6d5c45;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estate & Silk W.I.</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: serif;
+  background-color: #f6efe7;
+  color: #3e372f;
+}
+
+/* NAVBAR */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1px solid #e8e0d6;
+}
+
+nav h1 {
+  letter-spacing: 4px;
+  font-size: 18px;
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #6d5c45;
+  font-size: 14px;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h2 {
+  font-size: 36px;
+  color: #6d5c45;
+}
+
+.hero p {
+  margin-top: 20px;
+  color: #7a6d5a;
+}
+
+/* BUTTONS */
+.btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-dark {
+  background: #6d5c45;
+  color: white;
+}
+
+.btn-light {
+  border: 1px solid #cdbca4;
+  color: #6d5c45;
+}
+
+/* SHOP */
+.shop {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.card {
+  background: #fbf7f2;
+  border: 1px solid #e8e0d6;
+  border-radius: 20px;
+  width: 280px;
+  padding: 20px;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.card h3 {
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.price {
+  margin-top: 10px;
+  color: #6d5c45;
+}
+
+/* CONTACT */
+.contact {
+  text-align: center;
+  padding: 80px 20px;
+  border-top: 1px solid #e8e0d6;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: #8a7a67;
+}
+</style>
 </head>
 
 <body>
 
-<div class="container">
-
-  <div class="card">
-    <h1>ESTATE & SILK</h1>
-    <div class="wi">W.I.</div>
-    <p>Timeless pieces, thoughtfully curated.</p>
-  </div>
-
-  <p style="margin-top:40px;">
-    Estate & Silk W.I. is a sisters-founded luxury resale boutique.<br>
-    Coming soon.
-  </p>
-
+<!-- NAV -->
+<nav>
+  <h1>ESTATE & SILK W.I.</h1>
   <div>
-    <a href="mailto:contact@estateandsilkwi.com" class="btn btn-dark">Contact</a>
-    <a href="https://instagram.com/estateandsilk" class="btn btn-light">@estateandsilk</a>
+    <a href="#home">Home</a>
+    <a href="#shop">Shop Now</a>
+    <a href="#contact">Contact</a>
   </div>
+</nav>
 
-</div>
+<!-- HOME -->
+<section id="home" class="hero">
+  <h2>Welcome to Estate & Silk W.I</h2>
+  <p>Curated Luxury Resales</p>
+
+  <a href="#shop" class="btn btn-dark">Shop Now</a>
+  <a href="#contact" class="btn btn-light">Contact Us</a>
+</section>
+
+<!-- SHOP -->
+<section id="shop" class="shop">
+  <h2>Shop Our Collection</h2>
+
+  <div class="products">
+
+    <!-- PRODUCT 1 -->
+    <div class="card">
+      <img src="YOUR-DIOR-IMAGE.jpg" alt="">
+      <h3>Christian Dior Saddle Wallet</h3>
+      <p class="price">TTD 8,500 | USD 1,250</p>
+      <a href="mailto:contact@estateandsilkwi.com" class="btn btn-dark">DM to Secure</a>
+    </div>
+
+    <!-- PRODUCT 2 -->
+    <div class="card">
+      <img src="YOUR-GUCCI-IMAGE.jpg" alt="">
+      <h3>Gucci Mini Ophidia Bag</h3>
+      <p class="price">TTD 6,630 | USD 975</p>
+      <a href="mailto:contact@estateandsilkwi.com" class="btn btn-dark">DM to Secure</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <h2>Contact Us</h2>
+  <p>Email: contact@estateandsilkwi.com</p>
+  <p>Instagram: @estateandsilk</p>
+</section>
+
+<footer>
+  Estate & Silk W.I. · Luxury Resale Boutique
+</footer>
 
 </body>
 </html>
