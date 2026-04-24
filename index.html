@@ -17,26 +17,26 @@ body {
   background-attachment: fixed;
   color: #6d5c45;
 }
-h2, h3 {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
+
 /* NAV */
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 26px 50px;
-  background: rgba(246,239,231,0.82);
+  background: rgba(246,239,231,0.86);
   border-bottom: 1px solid #e8e0d6;
   backdrop-filter: blur(6px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 nav h3 {
   letter-spacing: 5px;
   font-weight: 400;
   color: #6d5c45;
+  margin: 0;
 }
 
 nav a {
@@ -45,59 +45,63 @@ nav a {
   color: #7a684f;
   font-size: 14px;
 }
-  <a href="#contact">Contact</a>
 
 /* HERO */
 .hero {
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 120px 20px 90px;
+  padding: 40px 20px;
 }
 
-.hero h2 {
-  font-size: 44px;
+.hero-content {
+  max-width: 850px;
+  background: rgba(251,247,242,0.62);
+  padding: 50px 35px;
+  border-radius: 26px;
+}
+
+.hero h1 {
+  font-size: 46px;
   font-weight: 400;
-  letter-spacing: 2px;
-  color: #6d5c45;
+  letter-spacing: 6px;
+  margin-bottom: 22px;
 }
 
 .hero p {
-  font-size: 18px;
-  color: #8a7a67;
+  font-size: 22px;
+  line-height: 1.7;
+  color: #7a684f;
 }
 
-/* BUTTONS */
-.btn {
-  display: inline-block;
-  margin-top: 14px;
-  padding: 12px 24px;
-  border-radius: 40px;
-  text-decoration: none;
-  font-size: 14px;
-  cursor: pointer;
+/* SECTION HEADINGS */
+.section-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin: 60px 0 20px;
 }
 
-.btn-dark {
-  background: #6d5c45;
-  color: white;
-  border: none;
-}
-
-/* SHOP */
+/* PRODUCTS */
 .products {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 34px;
-  padding: 50px 30px 90px;
+  padding: 40px 30px 100px;
 }
 
 .card {
-  background: rgba(251,247,242,0.88);
+  background: rgba(251,247,242,0.9);
   border: 1px solid #e8e0d6;
   border-radius: 24px;
   width: 290px;
   padding: 20px;
   box-shadow: 0 18px 45px rgba(160,140,110,0.12);
+  text-align: center;
 }
 
 .card img {
@@ -111,63 +115,17 @@ nav a {
 }
 
 .price {
-  margin-top: 10px;
   color: #6d5c45;
 }
 
-  <h2>Contact</h2>
-
-  <p style="margin-top:10px;">
-    For purchases, inquiries, or consignments:
-  </p>
-
-  <p style="margin-top:10px;">
-    <a href="mailto:estateandsilk@gmail.com" style="color:#6d5c45;">
-      estateandsilk@gmail.com
-    </a>
-  </p>
-
-  <p style="margin-top:10px;">
-    Instagram: @estateandsilk
-  </p>
-</section>
-/* DROPDOWN */
 details {
   margin-top: 10px;
   font-size: 14px;
   color: #7a6d5a;
 }
-</section> <!-- end of shop -->
 
-<section id="contact" style="text-align:center; padding:80px 20px;">
-  <h2>Contact</h2>
-
-  <p style="margin-top:10px;">
-    For purchases, inquiries, or consignments:
-  </p>
-
-  <p style="margin-top:10px;">
-    <a href="mailto:estateandsilk@gmail.com" style="color:#6d5c45;">
-      estateandsilk@gmail.com
-    </a>
-  </p>
-
-  <p style="margin-top:10px;">
-    <a href="https://instagram.com/estateandsilk" target="_blank" style="color:#6d5c45;">
-      @estateandsilk
-    </a>
-  </p>
-</section>
-.cart {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  background: rgba(109,92,69,0.92);
-  color: white;
-  padding: 15px;
-  border-radius: 14px;
-}
-  .thumbs {
+/* THUMBNAILS */
+.thumbs {
   display: flex;
   gap: 8px;
   margin-top: 10px;
@@ -187,6 +145,69 @@ details {
 .thumbs img:hover {
   opacity: 1;
 }
+
+/* BUTTONS */
+.btn {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 12px 24px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-dark {
+  background: #6d5c45;
+  color: white;
+}
+
+/* CART */
+.cart {
+  position: fixed;
+  right: 25px;
+  top: 140px;
+  width: 220px;
+  background: rgba(109,92,69,0.95);
+  color: white;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+  z-index: 999;
+}
+
+.cart h3 {
+  margin-top: 0;
+  letter-spacing: 1px;
+}
+
+.cart button {
+  background: white;
+  color: #6d5c45;
+  width: 100%;
+}
+
+/* CONTACT */
+#contact {
+  background: rgba(251,247,242,0.9);
+  text-align: center;
+  padding: 90px 20px;
+  border-top: 1px solid #e8e0d6;
+}
+
+#contact a {
+  color: #6d5c45;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  font-size: 13px;
+  color: #8a7a67;
+}
 </style>
 </head>
 
@@ -202,56 +223,59 @@ details {
 </nav>
 
 <section id="home" class="hero">
-  <h2>Welcome to Estate & Silk W.I</h2>
-  <p>A Curated Space for Timeless, 100% Authentic, Luxury Resale Pieces. Thoughtfully selected. Effortlessly elevated.</p>
+  <div class="hero-content">
+    <h1>ESTATE & SILK W.I.</h1>
+    <p>
+      A Curated Space for Timeless, 100% Authentic, Luxury Resale Pieces.
+      <br>
+      Thoughtfully selected. Effortlessly elevated.
+    </p>
+  </div>
 </section>
 
 <section id="shop">
+  <h2 class="section-title">Shop Our Collection</h2>
+
   <div class="products">
 
-    <!-- PRODUCT TEMPLATE -->
-    
     <div class="card">
       <img src="Dior 2 edit.png">
       <h3>Christian Dior Saddle Wallet on Chain</h3>
       <p class="price">TTD 8,500 | USD 1,250</p>
       <details>
         <summary>View Details</summary>
-        Pink - Excellent Condition (Like new). Includes Authentication Card, pouch and comes with dustbag. No box
+        Pink - Excellent Condition (Like new). Includes Authentication Card, pouch and dustbag. No box.
       </details>
-      <button class="btn btn-dark" onclick="addToCart('Dior Wallet')">Add to Cart</button>
+      <button class="btn btn-dark" onclick="addToCart('Christian Dior Saddle Wallet on Chain')">Add to Cart</button>
     </div>
 
     <div class="card">
-     <img src="gucci.jpg.png">
+      <img src="gucci.jpg.png">
       <h3>Gucci Calfskin Mini Ophidia Flap Shoulder Bag</h3>
       <p class="price">TTD 6,630 | USD 975</p>
       <details>
         <summary>View Details</summary>
-        PALE GREEN - NEW Authentic GG monogram, excellent condition. Comes with dustbag only
+        Pale Green - New Authentic GG monogram. Excellent condition. Comes with dustbag only.
       </details>
-      <button class="btn btn-dark" onclick="addToCart('Gucci Bag')">Add to Cart</button>
+      <button class="btn btn-dark" onclick="addToCart('Gucci Mini Ophidia Bag')">Add to Cart</button>
     </div>
 
-    <!-- NEW PRODUCTS -->
-
     <div class="card">
- <!-- MAIN IMAGE -->
-<img id="cl-main" src="CL 1 edit.png">
+      <img id="cl-main" src="CL 1 edit.png">
 
-<!-- THUMBNAILS -->
-<div class="thumbs">
-  <img src="CL 1 edit.png" onclick="changeImage('cl-main', this.src)">
-  <img src="CL 2 edit.png" onclick="changeImage('cl-main', this.src)">
-  <img src="CL 3.png" onclick="changeImage('cl-main', this.src)">
-</div>
+      <div class="thumbs">
+        <img src="CL 1 edit.png" onclick="changeImage('cl-main', this.src)">
+        <img src="CL 2 edit.png" onclick="changeImage('cl-main', this.src)">
+        <img src="CL 3.png" onclick="changeImage('cl-main', this.src)">
+      </div>
+
       <h3>Christian Louboutin Posticha 80 Slingbacks</h3>
       <p class="price">TTD 4,250 | USD 625</p>
       <details>
         <summary>View Details</summary>
-        SILVER - New with dustbag only, no box. Size 38.
+        Silver - New with dustbag only, no box. Size 38.
       </details>
-      <button class="btn btn-dark" onclick="addToCart('Louboutin Slingbacks')">Add to Cart</button>
+      <button class="btn btn-dark" onclick="addToCart('Christian Louboutin Posticha 80 Slingbacks')">Add to Cart</button>
     </div>
 
     <div class="card">
@@ -260,9 +284,9 @@ details {
       <p class="price">TTD 4,760 | USD 700</p>
       <details>
         <summary>View Details</summary>
-        NAVY - Pre-owned in good condition, slight wear marks. Comes with dustbag only.
+        Navy - Pre-owned in good condition, slight wear marks. Comes with dustbag only.
       </details>
-      <button class="btn btn-dark" onclick="addToCart('LV Wallet')">Add to Cart</button>
+      <button class="btn btn-dark" onclick="addToCart('Louis Vuitton Emilie Wallet')">Add to Cart</button>
     </div>
 
     <div class="card">
@@ -273,22 +297,39 @@ details {
         <summary>View Details</summary>
         Pre-owned in good condition. Comes with dustbag and box.
       </details>
-      <button class="btn btn-dark" onclick="addToCart('YSL Wallet')">Add to Cart</button>
+      <button class="btn btn-dark" onclick="addToCart('Saint Laurent Zip Around Wallet')">Add to Cart</button>
     </div>
 
   </div>
 </section>
 
-<div class="cart" id="cart">
-  <strong>Cart</strong>
-  <div id="cart-items" style="font-size:12px; margin-top:5px;"></div>
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
 
-  <br>
-  <button class="btn btn-dark" onclick="checkout()">Checkout</button>
+  <p>For purchases, inquiries, or consignments:</p>
+
+  <p>
+    <a href="mailto:estateandsilk@gmail.com">estateandsilk@gmail.com</a>
+  </p>
+
+  <p>
+    <a href="https://instagram.com/estateandsilk" target="_blank">
+      📸 @estateandsilk
+    </a>
+  </p>
+</section>
+
+<div class="cart" id="cart">
+  <h3>Cart</h3>
+  <div id="cart-items" style="font-size:13px; line-height:1.6;"></div>
+  <button class="btn" onclick="checkout()">Checkout</button>
 </div>
 
-<script>
+<footer>
+  Estate & Silk W.I. · Curated Luxury Resale
+</footer>
 
+<script>
 let cart = [];
 
 function addToCart(item) {
@@ -298,7 +339,9 @@ function addToCart(item) {
 
 function updateCart() {
   let cartDisplay = document.getElementById("cart-items");
-  cartDisplay.innerHTML = cart.map(i => "• " + i).join("<br>");
+  cartDisplay.innerHTML = cart.length
+    ? cart.map(i => "• " + i).join("<br>")
+    : "Cart is empty";
 }
 
 function checkout() {
@@ -310,12 +353,18 @@ function checkout() {
   let items = cart.join(", ");
   let email = "estateandsilk@gmail.com";
   let subject = "New Order - Estate & Silk W.I.";
-  let body = "Hello, I would like to purchase the following items:\n\n" + items;
+  let body = "Hello, I would like to purchase the following item(s):\n\n" + items;
 
-  window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href =
+    `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
+function changeImage(id, src) {
+  document.getElementById(id).src = src;
+}
+
+updateCart();
 </script>
 
 </body>
-</html>
+</html>    
