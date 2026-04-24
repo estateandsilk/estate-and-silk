@@ -41,6 +41,7 @@ nav a {
   color: #7a684f;
   font-size: 14px;
 }
+  <a href="#contact">Contact</a>
 
 /* HERO */
 .hero {
@@ -109,7 +110,23 @@ nav a {
   margin-top: 10px;
   color: #6d5c45;
 }
+<section id="contact" style="text-align:center; padding:80px 20px;">
+  <h2>Contact</h2>
 
+  <p style="margin-top:10px;">
+    For purchases, inquiries, or consignments:
+  </p>
+
+  <p style="margin-top:10px;">
+    <a href="mailto:estateandsilk@gmail.com" style="color:#6d5c45;">
+      estateandsilk@gmail.com
+    </a>
+  </p>
+
+  <p style="margin-top:10px;">
+    Instagram: @estateandsilk
+  </p>
+</section>
 /* DROPDOWN */
 details {
   margin-top: 10px;
@@ -239,22 +256,41 @@ details {
 </section>
 
 <div class="cart" id="cart">
-  Cart: 0 items  
+  <strong>Cart</strong>
+  <div id="cart-items" style="font-size:12px; margin-top:5px;"></div>
+
   <br>
-  <a href="mailto:contact@estateandsilkwi.com" style="color:white;">Checkout</a>
+  <button class="btn btn-dark" onclick="checkout()">Checkout</button>
 </div>
 
 <script>
-let cartCount = 0;
+<script>
+let cart = [];
 
 function addToCart(item) {
-  cartCount++;
-  document.getElementById("cart").innerHTML =
-    "Cart: " + cartCount + " items<br><a href='mailto:contact@estateandsilkwi.com' style='color:white;'>Checkout</a>";
+  cart.push(item);
+  updateCart();
 }
-  function changeImage(id, src) {
-  document.getElementById(id).src = src;
+
+function updateCart() {
+  let cartDisplay = document.getElementById("cart-items");
+  cartDisplay.innerHTML = cart.map(i => "• " + i).join("<br>");
 }
+
+function checkout() {
+  if (cart.length === 0) {
+    alert("Your cart is empty");
+    return;
+  }
+
+  let items = cart.join(", ");
+  let email = "estateandsilk@gmail.com";
+  let subject = "New Order - Estate & Silk W.I.";
+  let body = "Hello, I would like to purchase the following items:\n\n" + items;
+
+  window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 </script>
 
 </body>
