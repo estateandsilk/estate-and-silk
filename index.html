@@ -13,7 +13,7 @@ body {
   color: #3e372f;
 }
 
-/* NAVBAR */
+/* NAV */
 nav {
   display: flex;
   justify-content: space-between;
@@ -21,42 +21,31 @@ nav {
   border-bottom: 1px solid #e8e0d6;
 }
 
-nav h1 {
-  letter-spacing: 4px;
-  font-size: 18px;
-}
-
 nav a {
   margin-left: 20px;
   text-decoration: none;
   color: #6d5c45;
-  font-size: 14px;
 }
 
 /* HERO */
 .hero {
   text-align: center;
-  padding: 100px 20px;
+  padding: 80px 20px;
 }
 
 .hero h2 {
-  font-size: 36px;
   color: #6d5c45;
-}
-
-.hero p {
-  margin-top: 20px;
-  color: #7a6d5a;
 }
 
 /* BUTTONS */
 .btn {
   display: inline-block;
-  margin-top: 30px;
-  padding: 12px 25px;
+  margin-top: 10px;
+  padding: 10px 20px;
   border-radius: 30px;
   text-decoration: none;
   font-size: 14px;
+  cursor: pointer;
 }
 
 .btn-dark {
@@ -64,23 +53,13 @@ nav a {
   color: white;
 }
 
-.btn-light {
-  border: 1px solid #cdbca4;
-  color: #6d5c45;
-}
-
 /* SHOP */
-.shop {
-  padding: 60px 20px;
-  text-align: center;
-}
-
 .products {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
-  margin-top: 40px;
+  padding: 40px;
 }
 
 .card {
@@ -96,37 +75,36 @@ nav a {
   border-radius: 10px;
 }
 
-.card h3 {
-  margin-top: 15px;
-  font-size: 18px;
-}
-
 .price {
   margin-top: 10px;
   color: #6d5c45;
 }
 
-/* CONTACT */
-.contact {
-  text-align: center;
-  padding: 80px 20px;
-  border-top: 1px solid #e8e0d6;
+/* DROPDOWN */
+details {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #7a6d5a;
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 12px;
-  color: #8a7a67;
+/* CART */
+.cart {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: #6d5c45;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <nav>
-  <h1>ESTATE & SILK W.I.</h1>
+  <h3>ESTATE & SILK W.I.</h3>
   <div>
     <a href="#home">Home</a>
     <a href="#shop">Shop Now</a>
@@ -134,50 +112,91 @@ footer {
   </div>
 </nav>
 
-<!-- HOME -->
 <section id="home" class="hero">
   <h2>Welcome to Estate & Silk W.I</h2>
   <p>Curated Luxury Resales</p>
-
-  <a href="#shop" class="btn btn-dark">Shop Now</a>
-  <a href="#contact" class="btn btn-light">Contact Us</a>
 </section>
 
-<!-- SHOP -->
-<section id="shop" class="shop">
-  <h2>Shop Our Collection</h2>
-
+<section id="shop">
   <div class="products">
 
-    <!-- PRODUCT 1 -->
+    <!-- PRODUCT TEMPLATE -->
+    
     <div class="card">
-      <img src="YOUR-DIOR-IMAGE.jpg" alt="">
+      <img src="dior.jpg">
       <h3>Christian Dior Saddle Wallet</h3>
       <p class="price">TTD 8,500 | USD 1,250</p>
-      <a href="mailto:contact@estateandsilkwi.com" class="btn btn-dark">DM to Secure</a>
+      <details>
+        <summary>View Details</summary>
+        Pre-owned, excellent condition.
+      </details>
+      <button class="btn btn-dark" onclick="addToCart('Dior Wallet')">Add to Cart</button>
     </div>
 
-    <!-- PRODUCT 2 -->
     <div class="card">
-      <img src="YOUR-GUCCI-IMAGE.jpg" alt="">
+      <img src="gucci.jpg">
       <h3>Gucci Mini Ophidia Bag</h3>
       <p class="price">TTD 6,630 | USD 975</p>
-      <a href="mailto:contact@estateandsilkwi.com" class="btn btn-dark">DM to Secure</a>
+      <details>
+        <summary>View Details</summary>
+        Authentic GG monogram, excellent condition.
+      </details>
+      <button class="btn btn-dark" onclick="addToCart('Gucci Bag')">Add to Cart</button>
+    </div>
+
+    <!-- NEW PRODUCTS -->
+
+    <div class="card">
+      <img src="louboutin.jpg">
+      <h3>Christian Louboutin Posticha 80 Slingbacks</h3>
+      <p class="price">TTD 4,250 | USD 625</p>
+      <details>
+        <summary>View Details</summary>
+        New with dustbag only, no box. Size 38.
+      </details>
+      <button class="btn btn-dark" onclick="addToCart('Louboutin Slingbacks')">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="lv.jpg">
+      <h3>Louis Vuitton Emilie Wallet</h3>
+      <p class="price">TTD 4,760 | USD 700</p>
+      <details>
+        <summary>View Details</summary>
+        Pre-owned in good condition, slight wear marks. Comes with dustbag only.
+      </details>
+      <button class="btn btn-dark" onclick="addToCart('LV Wallet')">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="ysl.jpg">
+      <h3>Saint Laurent Zip Around Wallet</h3>
+      <p class="price">TTD 2,380 | USD 350</p>
+      <details>
+        <summary>View Details</summary>
+        Pre-owned in good condition. Comes with dustbag and box.
+      </details>
+      <button class="btn btn-dark" onclick="addToCart('YSL Wallet')">Add to Cart</button>
     </div>
 
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="contact">
-  <h2>Contact Us</h2>
-  <p>Email: contact@estateandsilkwi.com</p>
-  <p>Instagram: @estateandsilk</p>
-</section>
+<div class="cart" id="cart">
+  Cart: 0 items  
+  <br>
+  <a href="mailto:contact@estateandsilkwi.com" style="color:white;">Checkout</a>
+</div>
 
-<footer>
-  Estate & Silk W.I. · Luxury Resale Boutique
-</footer>
+<script>
+let cartCount = 0;
+
+function addToCart(item) {
+  cartCount++;
+  document.getElementById("cart").innerHTML =
+    "Cart: " + cartCount + " items<br><a href='mailto:contact@estateandsilkwi.com' style='color:white;'>Checkout</a>";
+}
+</script>
 
 </body>
 </html>
