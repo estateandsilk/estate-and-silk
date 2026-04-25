@@ -256,7 +256,7 @@ footer {
         <summary>View Details</summary>
         Pink - Excellent Condition (Like new). Includes Authentication Card, pouch and dustbag. No box.
       </details>
-      <button class="btn btn-dark" onclick="addToCart(CChristian Dior Saddle Wallet on Chain')">Add to Cart</button>
+     <button class="btn btn-dark" onclick="addToCart('Christian Dior Saddle Wallet on Chain')">
     </div>
 
     <div class="card">
@@ -335,43 +335,50 @@ footer {
 
   <button class="btn" onclick="checkout()">Checkout</button>
 
-  <div id="checkout-options" style="display:none; margin-top:15px; font-size:13px;">
-    <hr>
+ <div id="checkout-options" style="display:none; margin-top:15px; font-size:13px;">
+  <hr>
 
-    <a href="YOUR_PAYPAL_LINK" target="_blank" class="btn btn-light">
-      Pay with PayPal
-    </a>
+  <!-- PAYPAL -->
+  <a href="YOUR_PAYPAL_LINK" target="_blank" class="btn btn-light">
+    Secure Payment (PayPal)
+  </a>
 
-    <details style="margin-top:12px;">
-      <summary style="cursor:pointer;">Pay via Online Bank Transfer</summary>
+  <!-- BANK TRANSFER -->
+  <details style="margin-top:14px;">
+    <summary style="cursor:pointer; font-weight:500;">
+      Pay via Online Bank Transfer (TTD Only)
+    </summary>
 
-      <p>
-        Kindly note that deliveries can only be sent out once online bank transfers have been cleared and confirmed.
-      </p>
+    <p style="margin-top:10px;">
+      Kindly note that deliveries can only be sent out once online bank transfers have been cleared and confirmed.
+    </p>
 
-      <p>
-        To proceed with this method, please initiate an online bank transfer to our account for the invoiced amount using the below instructions and send us a screenshot of the transfer to
-        <strong>estateandsilk@gmail.com</strong>.
-      </p>
+    <p>
+      To proceed with this method, please initiate an online bank transfer to our account for the invoiced amount (Total) using the following instructions and send us a screenshot of the transfer to 
+      <strong>estateandsilk@gmail.com</strong>.
+    </p>
 
-      <p>
-        <strong>Instructions if you bank with Scotia, Republic Bank, First Citizens Bank, RBC Royal Bank, JMMB or other:</strong><br><br>
-        Bank: First Citizens<br>
-        Account Type: Chequing<br>
-        Account No.: [ADD ACCOUNT NUMBER]<br>
-        Company/Business Name: [ADD COMPANY/BUSINESS NAME]
-      </p>
-    </details>
+    <p>
+      If you bank with Republic Bank, First Citizens Bank, RBC Royal Bank, JMMB or other local TTD banks, send transfers to:
+    </p>
 
-    <a href="mailto:estateandsilk@gmail.com" class="btn btn-light">
-      Email Checkout
-    </a>
+    <p style="margin-top:10px;">
+      <strong>Bank:</strong> First Citizens Bank<br>
+      <strong>Account Type:</strong> Savings<br>
+      <strong>Account No:</strong> 2757662<br>
+      <strong>Name:</strong> Estate & Silk W.I.
+    </p>
+  </details>
 
-    <a href="https://wa.me/YOURNUMBER" target="_blank" class="btn btn-light">
-      WhatsApp Checkout
-    </a>
-  </div>
-</div>
+  <!-- EMAIL CHECKOUT -->
+<button class="btn btn-light" onclick="emailCheckout()">
+  Email Checkout
+</button>
+
+  <!-- WHATSAPP -->
+  <a href="https://wa.me/YOURNUMBER" target="_blank" class="btn btn-light">
+    WhatsApp Chat
+  </a>
 </div>
 
 <footer>
@@ -421,20 +428,9 @@ function changeImage(id, src) {
 updateCart();
   </script>
 
-  let items = cart.join(", ");
-  let email = "estateandsilk@gmail.com";
-  let subject = "New Order - Estate & Silk W.I.";
-  let body = "Hello, I would like to purchase the following item(s):\n\n" + items;
-
-  window.location.href =
-    `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
-
-function changeImage(id, src) {
-  document.getElementById(id).src = src;
-}
-
-updateCart();
+<button class="btn btn-light" onclick="emailCheckout()">
+  Email Checkout
+</button>
 </script>
 
 </body>
