@@ -171,36 +171,38 @@ details {
   letter-spacing: 1px;
 }
 
-.cart {
-  position: fixed;
-  right: 25px;
-  top: 140px;
-  width: 270px;
-  max-height: 75vh;
-  overflow-y: auto;
-  background: rgba(109,92,69,0.95);
-  color: white;
-  padding: 20px;
-  border-radius: 18px;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
-  z-index: 999;
+.cart-section,
+.policy-section {
+  background: rgba(251,247,242,0.92);
+  color: #6d5c45;
+  padding: 90px 20px;
+  text-align: center;
+  border-top: 1px solid #e8e0d6;
 }
 
-.cart h3 {
-  margin-top: 0;
+.cart-box,
+.policy-box {
+  max-width: 760px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.5);
+  border: 1px solid #e8e0d6;
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 18px 45px rgba(160,140,110,0.12);
 }
 
-.cart .btn {
+.cart-section .btn {
+  max-width: 300px;
   width: 100%;
   box-sizing: border-box;
   text-align: center;
 }
 
 .cart-total {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255,255,255,0.35);
-  font-size: 13px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #e8e0d6;
+  font-size: 15px;
   line-height: 1.6;
 }
 
@@ -208,9 +210,33 @@ details {
 .buyer-box {
   background: white;
   color: #6d5c45;
-  padding: 12px;
-  border-radius: 12px;
-  margin-top: 8px;
+  padding: 16px;
+  border-radius: 16px;
+  margin-top: 12px;
+  text-align: left;
+}
+
+.policy-item {
+  text-align: left;
+  border-bottom: 1px solid #e8e0d6;
+  padding: 18px 0;
+}
+
+.policy-item:last-child {
+  border-bottom: none;
+}
+
+.policy-item summary {
+  cursor: pointer;
+  font-size: 18px;
+  color: #6d5c45;
+  letter-spacing: 1px;
+}
+
+.policy-item p {
+  line-height: 1.7;
+  color: #7a684f;
+  font-size: 15px;
 }
 
 #contact {
@@ -220,7 +246,8 @@ details {
   border-top: 1px solid #e8e0d6;
 }
 
-#contact a {
+#contact a,
+.policy-section a {
   color: #6d5c45;
   text-decoration: none;
   font-size: 18px;
@@ -232,6 +259,33 @@ footer {
   font-size: 13px;
   color: #8a7a67;
 }
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+  }
+
+  nav div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  nav a {
+    margin-left: 0;
+  }
+
+  .hero h1 {
+    font-size: 34px;
+  }
+
+  .hero p {
+    font-size: 18px;
+  }
+}
 </style>
 </head>
 
@@ -242,6 +296,8 @@ footer {
   <div>
     <a href="#home">Home</a>
     <a href="#shop">Shop Now</a>
+    <a href="#cart">🛒 My Cart</a>
+    <a href="#policies">Policies</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
@@ -261,74 +317,156 @@ footer {
   <div class="products" id="products"></div>
 </section>
 
+<section class="cart-section" id="cart">
+  <h2 class="section-title">🛒 My Cart</h2>
+
+  <div class="cart-box">
+    <div id="cart-items" style="font-size:15px; line-height:1.7;"></div>
+
+    <div class="cart-total" id="cart-total">
+      Total: TTD 0 | USD 0
+    </div>
+
+    <button class="btn btn-dark" onclick="checkout()">Checkout</button>
+
+    <div id="checkout-options" style="display:none; margin-top:20px; font-size:14px;">
+      <hr>
+
+      <div class="buyer-box">
+        <p><strong>Step 1: Complete Buyer Details</strong></p>
+        <p>
+          Please complete this form before payment so we can match your order to your name, contact details, delivery information, and selected item(s).
+        </p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfzP67-7BXR4qndAMXqKxcXK4dVd2AX700YS31ARJ5IOEaXGA/viewform?usp=header" target="_blank" class="btn btn-dark">
+          Complete Buyer Details
+        </a>
+      </div>
+
+      <p style="font-size:13px; margin-top:15px;">
+        After submitting buyer details, choose your preferred payment or checkout option below.
+      </p>
+
+      <div id="paypal-section" style="margin-top:10px;"></div>
+
+      <details style="margin-top:12px;">
+        <summary class="btn btn-dark" style="text-align:center;">
+          Online Bank Transfer (TTD)
+        </summary>
+
+        <div class="bank-box">
+          <p>Kindly note that deliveries can only be sent out once online bank transfers have been cleared and confirmed.</p>
+
+          <p>
+            To proceed with this method, please initiate an online bank transfer to our account for the invoiced amount (Total) using the following instructions and send us a screenshot of the transfer to
+            <strong>estateandsilk@gmail.com</strong>.
+          </p>
+
+          <p>If you bank with Republic Bank, First Citizens Bank, RBC Royal Bank, JMMB or other local TTD banks, send transfers to:</p>
+
+          <p>
+            <strong>Bank:</strong> First Citizens Bank<br>
+            <strong>Account Type:</strong> Savings<br>
+            <strong>Account No:</strong> 2757662<br>
+            <strong>Name:</strong> Estate & Silk W.I.
+          </p>
+        </div>
+      </details>
+
+      <button class="btn btn-dark" onclick="emailCheckout()">Email Checkout</button>
+
+      <a href="https://wa.me/13058124683" target="_blank" class="btn btn-dark" id="whatsapp-link">
+        WhatsApp Chat
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="policy-section" id="policies">
+  <h2 class="section-title">Policies</h2>
+
+  <div class="policy-box">
+
+    <details class="policy-item">
+      <summary>Terms & Conditions</summary>
+      <p>
+        By accessing and purchasing from Estate & Silk W.I., you agree to the following terms. All items are 100% authentic and carefully curated. Each piece is either new or pre-owned and described to the best of our knowledge.
+      </p>
+      <p>
+        All sales are considered final once payment has been received and confirmed. Estate & Silk W.I. reserves the right to refuse or cancel any order at our discretion, including in cases of pricing errors, item unavailability, or suspected misuse.
+      </p>
+      <p>
+        By placing an order, you agree to provide accurate contact, payment, and delivery information.
+      </p>
+    </details>
+
+    <details class="policy-item">
+      <summary>Pricing & Payment Policy</summary>
+      <p>
+        All prices are listed in Trinidad and Tobago Dollars (TTD) and United States Dollars (USD), where applicable.
+      </p>
+      <p>
+        Payments may be made via PayPal, online bank transfer in TTD, email checkout, WhatsApp inquiry, or other agreed payment methods.
+      </p>
+      <p>
+        Orders will only be processed and released once full payment has been received, cleared, and confirmed. Estate & Silk W.I. is not responsible for any additional fees charged by payment providers, banks, or third-party platforms.
+      </p>
+    </details>
+
+    <details class="policy-item">
+      <summary>Authenticity Policy</summary>
+      <p>
+        Estate & Silk W.I. is committed to offering 100% authentic luxury resale pieces. Each item is reviewed and curated prior to sale.
+      </p>
+      <p>
+        We do not knowingly sell counterfeit goods. If you require additional images, details, or documentation before purchase, please contact us prior to checkout.
+      </p>
+    </details>
+
+    <details class="policy-item">
+      <summary>Shipping & Delivery Policy</summary>
+      <p>
+        Delivery timelines will be communicated after purchase confirmation. All items are carefully packaged to preserve quality and condition.
+      </p>
+      <p>
+        Kindly note that deliveries can only be sent out once payment has been cleared and confirmed.
+      </p>
+      <p>
+        Estate & Silk W.I. is not responsible for delays caused by couriers, customs, weather, public holidays, or other unforeseen circumstances. Risk of loss transfers to the buyer once the item has been shipped, dispatched, or delivered.
+      </p>
+    </details>
+
+    <details class="policy-item">
+      <summary>Returns & Final Sale Policy</summary>
+      <p>
+        Due to the nature of luxury resale, all sales are final. We do not accept returns, refunds, or exchanges once payment has been received and confirmed.
+      </p>
+      <p>
+        Customers are encouraged to carefully review product descriptions, condition notes, images, pricing, and details prior to purchase. Additional information may be requested before checkout.
+      </p>
+    </details>
+
+    <details class="policy-item">
+      <summary>Privacy Policy</summary>
+      <p>
+        Estate & Silk W.I. respects your privacy. Any personal information collected, including name, email address, phone number, delivery details, and order details, will be used solely for order processing, customer communication, delivery coordination, and purchase verification.
+      </p>
+      <p>
+        We do not sell, share, or distribute your personal information to third parties, except where required to complete your order, process payment, or comply with applicable requirements.
+      </p>
+      <p>
+        By using this website and submitting your information, you consent to the collection and use of your information in accordance with this policy.
+      </p>
+    </details>
+
+  </div>
+</section>
+
 <section id="contact">
   <h2 class="section-title">Contact</h2>
   <p>For purchases, inquiries, or consignments:</p>
   <p><a href="mailto:estateandsilk@gmail.com">estateandsilk@gmail.com</a></p>
   <p><a href="https://instagram.com/estateandsilk" target="_blank">📸 @estateandsilk</a></p>
 </section>
-
-<div class="cart" id="cart">
-  <h3>Cart</h3>
-
-  <div id="cart-items" style="font-size:13px; line-height:1.6;"></div>
-
-  <div class="cart-total" id="cart-total">
-    Total: TTD 0 | USD 0
-  </div>
-
-  <button class="btn btn-dark" onclick="checkout()">Checkout</button>
-
-  <div id="checkout-options" style="display:none; margin-top:15px; font-size:13px;">
-    <hr>
-
-    <div class="buyer-box">
-      <p><strong>Step 1: Complete Buyer Details</strong></p>
-      <p>
-        Please complete this form before payment so we can match your order to your name, contact details, delivery information, and selected item(s).
-      </p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfzP67-7BXR4qndAMXqKxcXK4dVd2AX700YS31ARJ5IOEaXGA/viewform?usp=header" target="_blank" class="btn btn-dark">
-        Complete Buyer Details
-      </a>
-    </div>
-
-    <p style="font-size:12px; margin-top:12px;">
-      After submitting buyer details, choose your preferred payment or checkout option below.
-    </p>
-
-    <div id="paypal-section" style="margin-top:10px;"></div>
-
-    <details style="margin-top:12px;">
-      <summary class="btn btn-dark" style="text-align:center;">
-        Online Bank Transfer (TTD)
-      </summary>
-
-      <div class="bank-box">
-        <p>Kindly note that deliveries can only be sent out once online bank transfers have been cleared and confirmed.</p>
-
-        <p>
-          To proceed with this method, please initiate an online bank transfer to our account for the invoiced amount (Total) using the following instructions and send us a screenshot of the transfer, your full name, delivery address or pick up option and contact details to
-          <strong>estateandsilk@gmail.com</strong>.
-        </p>
-
-        <p>If you bank with Republic Bank, First Citizens Bank, RBC Royal Bank, JMMB or other local TTD banks, send transfers to:</p>
-
-        <p>
-          <strong>Bank:</strong> First Citizens Bank<br>
-          <strong>Account Type:</strong> Savings<br>
-          <strong>Account No:</strong> 2757662<br>
-          <strong>Name:</strong> Estate & Silk W.I.
-        </p>
-      </div>
-    </details>
-
-    <button class="btn btn-dark" onclick="emailCheckout()">Email Checkout</button>
-
-    <a href="https://wa.me/13058124683" target="_blank" class="btn btn-dark" id="whatsapp-link">
-      WhatsApp Chat
-    </a>
-  </div>
-</div>
 
 <footer>
   Estate & Silk W.I. · Curated Luxury Resale
@@ -433,6 +571,7 @@ function renderProducts() {
 function addToCart(name, ttd, usd) {
   cart.push({ name, ttd, usd });
   updateCart();
+  window.location.href = "#cart";
 }
 
 function updateCart() {
@@ -447,9 +586,9 @@ function updateCart() {
   }
 
   cartDisplay.innerHTML = cart.map((item, index) =>
-    "• " + item.name + "<br><span style='font-size:12px;'>TTD " +
+    "• " + item.name + "<br><span style='font-size:13px;'>TTD " +
     item.ttd.toLocaleString() + " | USD " + item.usd.toLocaleString() +
-    "</span> <button onclick='removeItem(" + index + ")' style='margin-left:5px;'>x</button>"
+    "</span> <button onclick='removeItem(" + index + ")' style='margin-left:8px;'>x</button>"
   ).join("<br><br>");
 
   const totalTTD = cart.reduce((sum, item) => sum + item.ttd, 0);
