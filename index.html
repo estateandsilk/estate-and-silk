@@ -430,8 +430,7 @@ function changeImage(id, src) {
 }
 
 updateCart();
-  </script>
-function emailCheckout() {
+  function emailCheckout() {
   if (cart.length === 0) {
     alert("Your cart is empty");
     return;
@@ -452,6 +451,8 @@ function emailCheckout() {
 
   window.location.href =
     `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  </script>
+
 }
 </script>
 
