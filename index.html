@@ -98,6 +98,7 @@ nav a {
   padding: 20px;
   box-shadow: 0 18px 45px rgba(160,140,110,0.12);
   text-align: center;
+  position: relative;
 }
 
 .card img {
@@ -152,11 +153,29 @@ details {
   color: white;
 }
 
+.btn-sold {
+  background: #b8aa99;
+  color: white;
+  cursor: not-allowed;
+}
+
+.badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: rgba(109,92,69,0.9);
+  color: white;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
 .cart {
   position: fixed;
   right: 25px;
   top: 140px;
-  width: 260px;
+  width: 270px;
   max-height: 75vh;
   overflow-y: auto;
   background: rgba(109,92,69,0.95);
@@ -185,7 +204,8 @@ details {
   line-height: 1.6;
 }
 
-.bank-box {
+.bank-box,
+.buyer-box {
   background: white;
   color: #6d5c45;
   padding: 12px;
@@ -238,70 +258,7 @@ footer {
 
 <section id="shop">
   <h2 class="section-title">Shop Our Collection</h2>
-
-  <div class="products">
-
-    <div class="card">
-      <img src="Dior 2 edit.png">
-      <h3>Christian Dior Saddle Wallet on Chain</h3>
-      <p class="price">TTD 8,500 | USD 1,250</p>
-      <details>
-        <summary>View Details</summary>
-        Pink - Excellent Condition (Like new). Includes Authentication Card, pouch and dustbag. No box.
-      </details>
-      <button class="btn btn-dark" onclick="addToCart('Christian Dior Saddle Wallet on Chain', 8500, 1250)">Add to Cart</button>
-    </div>
-
-    <div class="card">
-      <img src="gucci.jpg.png">
-      <h3>Gucci Calfskin Mini Ophidia Flap Shoulder Bag</h3>
-      <p class="price">TTD 6,630 | USD 975</p>
-      <details>
-        <summary>View Details</summary>
-        Pale Green - New Authentic GG monogram. Excellent condition. Comes with dustbag only.
-      </details>
-      <button class="btn btn-dark" onclick="addToCart('Gucci Mini Ophidia Bag', 6630, 975)">Add to Cart</button>
-    </div>
-
-    <div class="card">
-      <img id="cl-main" src="CL 1 edit.png">
-      <div class="thumbs">
-        <img src="CL 1 edit.png" onclick="changeImage('cl-main', this.src)">
-        <img src="CL 2 edit.png" onclick="changeImage('cl-main', this.src)">
-        <img src="CL 3.png" onclick="changeImage('cl-main', this.src)">
-      </div>
-      <h3>Christian Louboutin Posticha 80 Slingbacks</h3>
-      <p class="price">TTD 4,250 | USD 625</p>
-      <details>
-        <summary>View Details</summary>
-        Silver - New with dustbag only, no box. Size 38.
-      </details>
-      <button class="btn btn-dark" onclick="addToCart('Christian Louboutin Posticha 80 Slingbacks', 4250, 625)">Add to Cart</button>
-    </div>
-
-    <div class="card">
-      <img src="LV 1edit.png">
-      <h3>Louis Vuitton Emilie Wallet</h3>
-      <p class="price">TTD 4,760 | USD 700</p>
-      <details>
-        <summary>View Details</summary>
-        Navy - Pre-owned in good condition, slight wear marks. Comes with dustbag only.
-      </details>
-      <button class="btn btn-dark" onclick="addToCart('Louis Vuitton Emilie Wallet', 4760, 700)">Add to Cart</button>
-    </div>
-
-    <div class="card">
-      <img src="YSL1edit.png">
-      <h3>Saint Laurent Zip Around Wallet</h3>
-      <p class="price">TTD 2,380 | USD 350</p>
-      <details>
-        <summary>View Details</summary>
-        Pre-owned in good condition. Comes with dustbag and box.
-      </details>
-      <button class="btn btn-dark" onclick="addToCart('Saint Laurent Zip Around Wallet', 2380, 350)">Add to Cart</button>
-    </div>
-
-  </div>
+  <div class="products" id="products"></div>
 </section>
 
 <section id="contact">
@@ -324,6 +281,20 @@ footer {
 
   <div id="checkout-options" style="display:none; margin-top:15px; font-size:13px;">
     <hr>
+
+    <div class="buyer-box">
+      <p><strong>Step 1: Complete Buyer Details</strong></p>
+      <p>
+        Please complete this form before payment so we can match your order to your name, contact details, delivery information, and selected item(s).
+      </p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfzP67-7BXR4qndAMXqKxcXK4dVd2AX700YS31ARJ5IOEaXGA/viewform?usp=header" target="_blank" class="btn btn-dark">
+        Complete Buyer Details
+      </a>
+    </div>
+
+    <p style="font-size:12px; margin-top:12px;">
+      After submitting buyer details, choose your preferred payment or checkout option below.
+    </p>
 
     <div id="paypal-section" style="margin-top:10px;"></div>
 
@@ -364,8 +335,100 @@ footer {
 </footer>
 
 <script>
+const products = [
+  {
+    id: "dior",
+    name: "Christian Dior Saddle Wallet on Chain",
+    image: "Dior 2 edit.png",
+    thumbnails: [],
+    ttd: 8500,
+    usd: 1250,
+    details: "Pink - Excellent Condition (Like new). Includes Authentication Card, pouch and dustbag. No box.",
+    available: true
+  },
+  {
+    id: "gucci",
+    name: "Gucci Calfskin Mini Ophidia Flap Shoulder Bag",
+    image: "gucci.jpg.png",
+    thumbnails: [],
+    ttd: 6630,
+    usd: 975,
+    details: "Pale Green - New Authentic GG monogram. Excellent condition. Comes with dustbag only.",
+    available: true
+  },
+  {
+    id: "cl",
+    name: "Christian Louboutin Posticha 80 Slingbacks",
+    image: "CL 1 edit.png",
+    thumbnails: ["CL 1 edit.png", "CL 2 edit.png", "CL 3.png"],
+    ttd: 4250,
+    usd: 625,
+    details: "Silver - New with dustbag only, no box. Size 38.",
+    available: true
+  },
+  {
+    id: "lv",
+    name: "Louis Vuitton Emilie Wallet",
+    image: "LV 1edit.png",
+    thumbnails: [],
+    ttd: 4760,
+    usd: 700,
+    details: "Navy - Pre-owned in good condition, slight wear marks. Comes with dustbag only.",
+    available: true
+  },
+  {
+    id: "ysl",
+    name: "Saint Laurent Zip Around Wallet",
+    image: "YSL1edit.png",
+    thumbnails: [],
+    ttd: 2380,
+    usd: 350,
+    details: "Pre-owned in good condition. Comes with dustbag and box.",
+    available: true
+  }
+];
+
 let cart = [];
 let paypalLoaded = false;
+
+function renderProducts() {
+  const container = document.getElementById("products");
+
+  container.innerHTML = products.map(product => {
+    const mainImageId = product.id + "-main";
+
+    const thumbnailHtml = product.thumbnails.length
+      ? `<div class="thumbs">
+          ${product.thumbnails.map(img =>
+            `<img src="${img}" onclick="changeImage('${mainImageId}', this.src)">`
+          ).join("")}
+        </div>`
+      : "";
+
+    const buttonHtml = product.available
+      ? `<button class="btn btn-dark" onclick="addToCart('${product.name}', ${product.ttd}, ${product.usd})">Add to Cart</button>`
+      : `<button class="btn btn-sold" disabled>Sold Out</button>`;
+
+    const badgeHtml = product.available
+      ? `<div class="badge">ONLY 1 AVAILABLE</div>`
+      : `<div class="badge">SOLD OUT</div>`;
+
+    return `
+      <div class="card">
+        ${badgeHtml}
+        <img id="${mainImageId}" src="${product.image}">
+        ${thumbnailHtml}
+        <h3>${product.name}</h3>
+        <p class="price">TTD ${product.ttd.toLocaleString()} | USD ${product.usd.toLocaleString()}</p>
+        <details>
+          <summary>View Details</summary>
+          ${product.details}
+        </details>
+        ${buttonHtml}
+      </div>
+    `;
+  }).join("");
+}
 
 function addToCart(name, ttd, usd) {
   cart.push({ name, ttd, usd });
@@ -479,6 +542,7 @@ function changeImage(id, src) {
   document.getElementById(id).src = src;
 }
 
+renderProducts();
 updateCart();
 </script>
 
