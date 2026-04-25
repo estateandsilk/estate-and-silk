@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Estate & Silk W.I.</title>
 
+<script src="https://www.paypal.com/sdk/js?client-id=BAADzJ8R29EQb1-tEoUe_36Q0jOeYuzXrp5FXeJBuHCN6xE6mZByzcPFvo7jFMm07hNFZg_5K7lty0ZBnI&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+
 <style>
 body {
   margin: 0;
@@ -154,7 +156,9 @@ details {
   position: fixed;
   right: 25px;
   top: 140px;
-  width: 240px;
+  width: 260px;
+  max-height: 75vh;
+  overflow-y: auto;
   background: rgba(109,92,69,0.95);
   color: white;
   padding: 20px;
@@ -171,6 +175,22 @@ details {
   width: 100%;
   box-sizing: border-box;
   text-align: center;
+}
+
+.cart-total {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.35);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.bank-box {
+  background: white;
+  color: #6d5c45;
+  padding: 12px;
+  border-radius: 12px;
+  margin-top: 8px;
 }
 
 #contact {
@@ -229,7 +249,7 @@ footer {
         <summary>View Details</summary>
         Pink - Excellent Condition (Like new). Includes Authentication Card, pouch and dustbag. No box.
       </details>
-      <button class="btn btn-dark" onclick="addToCart('Christian Dior Saddle Wallet on Chain')">Add to Cart</button>
+      <button class="btn btn-dark" onclick="addToCart('Christian Dior Saddle Wallet on Chain', 8500, 1250)">Add to Cart</button>
     </div>
 
     <div class="card">
@@ -240,7 +260,7 @@ footer {
         <summary>View Details</summary>
         Pale Green - New Authentic GG monogram. Excellent condition. Comes with dustbag only.
       </details>
-      <button class="btn btn-dark" onclick="addToCart('Gucci Mini Ophidia Bag')">Add to Cart</button>
+      <button class="btn btn-dark" onclick="addToCart('Gucci Mini Ophidia Bag', 6630, 975)">Add to Cart</button>
     </div>
 
     <div class="card">
@@ -256,7 +276,7 @@ footer {
         <summary>View Details</summary>
         Silver - New with dustbag only, no box. Size 38.
       </details>
-      <button class="btn btn-dark" onclick="addToCart('Christian Louboutin Posticha 80 Slingbacks')">Add to Cart</button>
+      <button class="btn btn-dark" onclick="addToCart('Christian Louboutin Posticha 80 Slingbacks', 4250, 625)">Add to Cart</button>
     </div>
 
     <div class="card">
@@ -267,7 +287,7 @@ footer {
         <summary>View Details</summary>
         Navy - Pre-owned in good condition, slight wear marks. Comes with dustbag only.
       </details>
-      <button class="btn btn-dark" onclick="addToCart('Louis Vuitton Emilie Wallet')">Add to Cart</button>
+      <button class="btn btn-dark" onclick="addToCart('Louis Vuitton Emilie Wallet', 4760, 700)">Add to Cart</button>
     </div>
 
     <div class="card">
@@ -278,7 +298,7 @@ footer {
         <summary>View Details</summary>
         Pre-owned in good condition. Comes with dustbag and box.
       </details>
-      <button class="btn btn-dark" onclick="addToCart('Saint Laurent Zip Around Wallet')">Add to Cart</button>
+      <button class="btn btn-dark" onclick="addToCart('Saint Laurent Zip Around Wallet', 2380, 350)">Add to Cart</button>
     </div>
 
   </div>
@@ -293,35 +313,26 @@ footer {
 
 <div class="cart" id="cart">
   <h3>Cart</h3>
+
   <div id="cart-items" style="font-size:13px; line-height:1.6;"></div>
+
+  <div class="cart-total" id="cart-total">
+    Total: TTD 0 | USD 0
+  </div>
 
   <button class="btn btn-dark" onclick="checkout()">Checkout</button>
 
-<div id="checkout-options" style="display:none; margin-top:15px; font-size:13px;">
-  <hr>
+  <div id="checkout-options" style="display:none; margin-top:15px; font-size:13px;">
+    <hr>
 
-  <!-- PAYPAL -->
-  <div id="paypal-section" style="margin-top:10px;"></div>
-
-  <!-- BANK / EMAIL / WHATSAPP stay the same -->
-</div>
-
-    <div style="margin-top:10px;">
-  <div id="paypal-container-UQ9CKTDNKFMUG"></div>
-</div>
-
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "UQ9CKTDNKFMUG"
-  }).render("#paypal-container-UQ9CKTDNKFMUG");
-</script>
+    <div id="paypal-section" style="margin-top:10px;"></div>
 
     <details style="margin-top:12px;">
       <summary class="btn btn-dark" style="text-align:center;">
         Online Bank Transfer (TTD)
       </summary>
 
-      <div style="background:white; color:#6d5c45; padding:12px; border-radius:12px; margin-top:8px;">
+      <div class="bank-box">
         <p>Kindly note that deliveries can only be sent out once online bank transfers have been cleared and confirmed.</p>
 
         <p>
@@ -342,7 +353,7 @@ footer {
 
     <button class="btn btn-dark" onclick="emailCheckout()">Email Checkout</button>
 
-    <a href="https://wa.me/13058124683" target="_blank" class="btn btn-dark">
+    <a href="https://wa.me/13058124683" target="_blank" class="btn btn-dark" id="whatsapp-link">
       WhatsApp Chat
     </a>
   </div>
@@ -354,29 +365,42 @@ footer {
 
 <script>
 let cart = [];
+let paypalLoaded = false;
 
-function addToCart(item) {
-  cart.push(item);
+function addToCart(name, ttd, usd) {
+  cart.push({ name, ttd, usd });
   updateCart();
 }
 
 function updateCart() {
   const cartDisplay = document.getElementById("cart-items");
+  const cartTotal = document.getElementById("cart-total");
 
-  cartDisplay.innerHTML = cart.length
-    ? cart.map((item, index) =>
-        "• " + item + " <button onclick='removeItem(" + index + ")' style='margin-left:5px;'>x</button>"
-      ).join("<br>")
-    : "Cart is empty";
+  if (cart.length === 0) {
+    cartDisplay.innerHTML = "Cart is empty";
+    cartTotal.innerHTML = "Total: TTD 0 | USD 0";
+    document.getElementById("checkout-options").style.display = "none";
+    return;
+  }
+
+  cartDisplay.innerHTML = cart.map((item, index) =>
+    "• " + item.name + "<br><span style='font-size:12px;'>TTD " +
+    item.ttd.toLocaleString() + " | USD " + item.usd.toLocaleString() +
+    "</span> <button onclick='removeItem(" + index + ")' style='margin-left:5px;'>x</button>"
+  ).join("<br><br>");
+
+  const totalTTD = cart.reduce((sum, item) => sum + item.ttd, 0);
+  const totalUSD = cart.reduce((sum, item) => sum + item.usd, 0);
+
+  cartTotal.innerHTML =
+    "<strong>Total:</strong><br>TTD " + totalTTD.toLocaleString() +
+    " | USD " + totalUSD.toLocaleString();
 }
 
 function removeItem(index) {
   cart.splice(index, 1);
   updateCart();
-
-  if (cart.length === 0) {
-    document.getElementById("checkout-options").style.display = "none";
-  }
+}
 
 function checkout() {
   if (cart.length === 0) {
@@ -386,8 +410,21 @@ function checkout() {
 
   document.getElementById("checkout-options").style.display = "block";
 
-  // Load PayPal only when checkout opens
   loadPayPalButton();
+  updateWhatsAppLink();
+}
+
+function loadPayPalButton() {
+  if (paypalLoaded) return;
+
+  document.getElementById("paypal-section").innerHTML =
+    '<div id="paypal-container-UQ9CKTDNKFMUG"></div>';
+
+  paypal.HostedButtons({
+    hostedButtonId: "UQ9CKTDNKFMUG"
+  }).render("#paypal-container-UQ9CKTDNKFMUG");
+
+  paypalLoaded = true;
 }
 
 function emailCheckout() {
@@ -396,14 +433,21 @@ function emailCheckout() {
     return;
   }
 
+  const totalTTD = cart.reduce((sum, item) => sum + item.ttd, 0);
+  const totalUSD = cart.reduce((sum, item) => sum + item.usd, 0);
+
   const email = "estateandsilk@gmail.com";
-  const subject = "New Order - " + cart.join(", ");
+  const subject = "New Order - " + cart.map(item => item.name).join(", ");
 
   let body = "Hello,\n\nI would like to purchase the following items:\n\n";
 
   cart.forEach(item => {
-    body += "• " + item + "\n";
+    body += "• " + item.name + " - TTD " + item.ttd.toLocaleString() +
+            " | USD " + item.usd.toLocaleString() + "\n";
   });
+
+  body += "\nTotal: TTD " + totalTTD.toLocaleString() +
+          " | USD " + totalUSD.toLocaleString();
 
   body += "\n\nThank you.";
 
@@ -411,6 +455,24 @@ function emailCheckout() {
     "mailto:" + email +
     "?subject=" + encodeURIComponent(subject) +
     "&body=" + encodeURIComponent(body);
+}
+
+function updateWhatsAppLink() {
+  const totalTTD = cart.reduce((sum, item) => sum + item.ttd, 0);
+  const totalUSD = cart.reduce((sum, item) => sum + item.usd, 0);
+
+  let message = "Hello, I would like to purchase the following items:%0A%0A";
+
+  cart.forEach(item => {
+    message += "• " + item.name + " - TTD " + item.ttd.toLocaleString() +
+               " | USD " + item.usd.toLocaleString() + "%0A";
+  });
+
+  message += "%0ATotal: TTD " + totalTTD.toLocaleString() +
+             " | USD " + totalUSD.toLocaleString();
+
+  document.getElementById("whatsapp-link").href =
+    "https://wa.me/13058124683?text=" + message;
 }
 
 function changeImage(id, src) {
