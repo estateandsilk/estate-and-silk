@@ -332,7 +332,46 @@ footer {
 <div class="cart" id="cart">
   <h3>Cart</h3>
   <div id="cart-items" style="font-size:13px; line-height:1.6;"></div>
+
   <button class="btn" onclick="checkout()">Checkout</button>
+
+  <div id="checkout-options" style="display:none; margin-top:15px; font-size:13px;">
+    <hr>
+
+    <a href="YOUR_PAYPAL_LINK" target="_blank" class="btn btn-light">
+      Pay with PayPal
+    </a>
+
+    <details style="margin-top:12px;">
+      <summary style="cursor:pointer;">Pay via Online Bank Transfer</summary>
+
+      <p>
+        Kindly note that deliveries can only be sent out once online bank transfers have been cleared and confirmed.
+      </p>
+
+      <p>
+        To proceed with this method, please initiate an online bank transfer to our account for the invoiced amount using the below instructions and send us a screenshot of the transfer to
+        <strong>estateandsilk@gmail.com</strong>.
+      </p>
+
+      <p>
+        <strong>Instructions if you bank with Scotia, Republic Bank, First Citizens Bank, RBC Royal Bank, JMMB or other:</strong><br><br>
+        Bank: First Citizens<br>
+        Account Type: Chequing<br>
+        Account No.: [ADD ACCOUNT NUMBER]<br>
+        Company/Business Name: [ADD COMPANY/BUSINESS NAME]
+      </p>
+    </details>
+
+    <a href="mailto:estateandsilk@gmail.com" class="btn btn-light">
+      Email Checkout
+    </a>
+
+    <a href="https://wa.me/YOURNUMBER" target="_blank" class="btn btn-light">
+      WhatsApp Checkout
+    </a>
+  </div>
+</div>
 </div>
 
 <footer>
@@ -349,15 +388,37 @@ function addToCart(item) {
 
 function updateCart() {
   let cartDisplay = document.getElementById("cart-items");
+
   cartDisplay.innerHTML = cart.length
-    ? cart.map(i => "• " + i).join("<br>")
+    ? cart.map((item, index) =>
+        "• " + item + " <button onclick='removeItem(" + index + ")' style='margin-left:5px;'>x</button>"
+      ).join("<br>")
     : "Cart is empty";
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  updateCart();
+
+  if (cart.length === 0) {
+    document.getElementById("checkout-options").style.display = "none";
+  }
 }
 
 function checkout() {
   if (cart.length === 0) {
     alert("Your cart is empty");
     return;
+  }
+
+  document.getElementById("checkout-options").style.display = "block";
+}
+
+function changeImage(id, src) {
+  document.getElementById(id).src = src;
+}
+
+updateCart();
   }
 
   let items = cart.join(", ");
