@@ -256,7 +256,9 @@ footer {
         <summary>View Details</summary>
         Pink - Excellent Condition (Like new). Includes Authentication Card, pouch and dustbag. No box.
       </details>
-     <button class="btn btn-dark" onclick="addToCart('Christian Dior Saddle Wallet on Chain')">
+    <button class="btn btn-dark" onclick="addToCart('Christian Dior Saddle Wallet on Chain')">
+  Add to Cart
+</button>
     </div>
 
     <div class="card">
@@ -339,44 +341,46 @@ footer {
   <hr>
 
   <!-- PAYPAL -->
-  <a href="YOUR_PAYPAL_LINK" target="_blank" class="btn btn-light">
+  <a href="YOUR_PAYPAL_LINK" target="_blank" class="btn btn-dark">
     Secure Payment (PayPal)
   </a>
 
-  <!-- BANK TRANSFER -->
-  <details style="margin-top:14px;">
-    <summary style="cursor:pointer; font-weight:500;">
-      Pay via Online Bank Transfer (TTD Only)
+  <!-- ONLINE BANK TRANSFER -->
+  <details style="margin-top:12px;">
+    <summary class="btn btn-dark" style="text-align:center;">
+      Online Bank Transfer (TTD)
     </summary>
 
-    <p style="margin-top:10px;">
-      Kindly note that deliveries can only be sent out once online bank transfers have been cleared and confirmed.
-    </p>
+    <div style="background:white; color:#6d5c45; padding:12px; border-radius:12px; margin-top:8px;">
+      <p>
+        Kindly note that deliveries can only be sent out once online bank transfers have been cleared and confirmed.
+      </p>
 
-    <p>
-      To proceed with this method, please initiate an online bank transfer to our account for the invoiced amount (Total) using the following instructions and send us a screenshot of the transfer to 
-      <strong>estateandsilk@gmail.com</strong>.
-    </p>
+      <p>
+        To proceed with this method, please initiate an online bank transfer to our account for the invoiced amount (Total) using the following instructions and send us a screenshot of the transfer to 
+        <strong>estateandsilk@gmail.com</strong>.
+      </p>
 
-    <p>
-      If you bank with Republic Bank, First Citizens Bank, RBC Royal Bank, JMMB or other local TTD banks, send transfers to:
-    </p>
+      <p>
+        If you bank with Republic Bank, First Citizens Bank, RBC Royal Bank, JMMB or other local TTD banks, send transfers to:
+      </p>
 
-    <p style="margin-top:10px;">
-      <strong>Bank:</strong> First Citizens Bank<br>
-      <strong>Account Type:</strong> Savings<br>
-      <strong>Account No:</strong> 2757662<br>
-      <strong>Name:</strong> Estate & Silk W.I.
-    </p>
+      <p>
+        <strong>Bank:</strong> First Citizens Bank<br>
+        <strong>Account Type:</strong> Savings<br>
+        <strong>Account No:</strong> 2757662<br>
+        <strong>Name:</strong> Estate & Silk W.I.
+      </p>
+    </div>
   </details>
 
-  <!-- EMAIL CHECKOUT -->
-<button class="btn btn-light" onclick="emailCheckout()">
-  Email Checkout
-</button>
+  <!-- EMAIL -->
+  <button class="btn btn-dark" onclick="emailCheckout()">
+    Email Checkout
+  </button>
 
   <!-- WHATSAPP -->
-  <a href="https://wa.me/YOURNUMBER" target="_blank" class="btn btn-light">
+  <a href="https://wa.me/13058124683" target="_blank" class="btn btn-dark">
     WhatsApp Chat
   </a>
 </div>
@@ -427,10 +431,28 @@ function changeImage(id, src) {
 
 updateCart();
   </script>
+function emailCheckout() {
+  if (cart.length === 0) {
+    alert("Your cart is empty");
+    return;
+  }
 
-<button class="btn btn-light" onclick="emailCheckout()">
-  Email Checkout
-</button>
+  let items = cart.join(", ");
+  let email = "estateandsilk@gmail.com";
+
+  let subject = "New Order - " + items;
+
+  let body = "Hello,\n\nI would like to purchase the following items:\n\n";
+
+  cart.forEach(item => {
+    body += "• " + item + "\n";
+  });
+
+  body += "\n\nThank you.";
+
+  window.location.href =
+    `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
 </script>
 
 </body>
