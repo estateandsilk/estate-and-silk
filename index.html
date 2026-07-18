@@ -10,13 +10,13 @@
 
 <style>
 :root {
-  --ivory: #f6efe7;
-  --paper: #fbf7f2;
-  --ink: #6d5c45;
-  --taupe: #7a684f;
-  --line: #e8e0d6;
-  --accent: #6d5c45;
-  --soft: rgba(251,247,242,0.90);
+  --ivory: #FFFAE0;
+  --paper: #FFFDF2;
+  --ink: #4B3D1F;
+  --taupe: #7B6843;
+  --line: #E8DDB2;
+  --accent: #A99220;
+  --soft: rgba(255,253,242,0.92);
 }
 
 * { box-sizing: border-box; }
@@ -37,7 +37,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 20px 48px;
-  background: rgba(246,239,231,0.86);
+  background: rgba(255,250,224,0.90);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(10px);
   position: sticky;
@@ -83,14 +83,14 @@ nav a:hover {
   text-align: center;
   padding: 80px 20px;
   background:
-    linear-gradient(rgba(246,239,231,0.78), rgba(246,239,231,0.78)),
+    linear-gradient(rgba(255,250,224,0.76), rgba(255,250,224,0.76)),
     url("Post 1 IG.png") center/cover no-repeat;
 }
 
 .hero-content {
   max-width: 850px;
-  background: rgba(251,247,242,0.62);
-  border: 1px solid rgba(232,224,214,0.9);
+  background: rgba(255,253,242,0.68);
+  border: 1px solid rgba(232,221,178,0.95);
   padding: 58px 48px;
   box-shadow: 0 18px 45px rgba(160,140,110,0.12);
 }
@@ -187,11 +187,11 @@ nav a:hover {
   position: relative;
 }
 
-.card > img {
+.card-image-wrap > img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  background: #f6efe7;
+  background: var(--ivory);
 }
 
 .card h3 {
@@ -308,7 +308,7 @@ details summary {
 
 .bank-box,
 .buyer-box {
-  background: white;
+  background: #FFFDF2;
   color: var(--ink);
   padding: 18px;
   margin-top: 14px;
@@ -367,6 +367,124 @@ footer {
   padding: 24px;
   font-size: 12px;
   color: #8a7a67;
+}
+
+
+.brand-lockup strong,
+.hero h1 {
+  color: var(--accent);
+}
+
+.brand-lockup span {
+  color: var(--ink);
+}
+
+.hero h1 {
+  position: relative;
+  padding-bottom: 14px;
+}
+
+.hero h1::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 1px;
+  background: var(--accent);
+  margin: 18px auto 0;
+}
+
+.section-title {
+  color: var(--ink);
+}
+
+.btn {
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.btn-dark {
+  background: var(--accent);
+  color: var(--ink);
+  border-color: var(--accent);
+}
+
+.btn-dark:hover {
+  background: var(--ink);
+  color: var(--accent);
+  border-color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.badge {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 55px rgba(89, 72, 30, 0.14);
+}
+
+.card-image-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image-wrap > img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.card-image-wrap .hover-image {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.card-image-wrap.has-hover:hover .main-image {
+  opacity: 0;
+}
+
+.card-image-wrap.has-hover:hover .hover-image {
+  opacity: 1;
+}
+
+.card-image-wrap:hover img {
+  transform: scale(1.015);
+}
+
+.shop-tools input,
+.shop-tools select {
+  border-width: 1px;
+  box-shadow: none;
+}
+
+.shop-tools input:focus,
+.shop-tools select:focus {
+  border-color: var(--accent);
+}
+
+.policy-section .section-title::after,
+.authentication-section .section-title::after,
+.cart-section .section-title::after,
+#contact .section-title::after,
+#shop .section-title::after {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 1px;
+  background: var(--accent);
+  margin: 14px auto 0;
+}
+
+footer {
+  color: var(--taupe);
 }
 
 @media (max-width: 768px) {
@@ -624,7 +742,7 @@ footer {
     <input
       type="search"
       id="product-search"
-      placeholder="Search by designer, item, colour, or style"
+      placeholder="Search by designer, collection, or item"
       aria-label="Search products"
     >
     <select id="availability-filter" aria-label="Filter by availability">
@@ -723,7 +841,7 @@ footer {
 </section>
 
 <section class="policy-section" id="policies">
-  <h2 class="section-title">Policies</h2>
+  <h2 class="section-title">Policies &amp; Customer Care</h2>
 
   <div class="policy-box">
 
@@ -925,7 +1043,7 @@ footer {
   <p>For purchases, inquiries, or consignments:</p>
   <p><a href="mailto:estateandsilk@gmail.com">estateandsilk@gmail.com</a></p>
   <p><a href="https://instagram.com/estateandsilk" target="_blank" class="ig-link">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#6d5c45" viewBox="0 0 24 24" style="vertical-align: middle; margin-right:6px;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#A99220" viewBox="0 0 24 24" style="vertical-align: middle; margin-right:6px;">
     <path d="M7.75 2h8.5C19.216 2 22 4.784 22 8.25v7.5C22 19.216 19.216 22 16.25 22h-8.5C4.784 22 2 19.216 2 16.25v-7.5C2 4.784 4.784 2 7.75 2zm0 2C5.678 4 4 5.678 4 7.75v8.5C4 18.322 5.678 20 7.75 20h8.5c2.072 0 3.75-1.678 3.75-3.75v-8.5C20 5.678 18.322 4 16.25 4h-8.5zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm5.25-.75a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"/>
   </svg>
   @estateandsilk
@@ -1207,19 +1325,31 @@ function renderProducts() {
       : `<button class="btn btn-sold" disabled>Sold Out</button>`;
 
     const badgeHtml = product.available
-      ? `<div class="badge">ONLY 1 AVAILABLE</div>`
-      : `<div class="badge">SOLD OUT</div>`;
+      ? `<div class="badge">AVAILABLE</div>`
+      : `<div class="badge" style="background:#B8AA99;color:white;">SOLD OUT</div>`;
 
     return `
       <div class="card">
         ${badgeHtml}
-        <img
-          id="${mainImageId}"
-          src="${product.image}"
-          alt="${product.name}"
-          loading="lazy"
-          onclick="openLightbox(this.src, '${escapeForAttribute(product.name)}')"
-        >
+        <div class="card-image-wrap ${product.thumbnails.length > 1 ? "has-hover" : ""}">
+          <img
+            class="main-image"
+            id="${mainImageId}"
+            src="${product.image}"
+            alt="${product.name}"
+            loading="lazy"
+            onclick="openLightbox(this.src, '${escapeForAttribute(product.name)}')"
+          >
+          ${product.thumbnails.length > 1 ? `
+            <img
+              class="hover-image"
+              src="${product.thumbnails[1]}"
+              alt="${product.name} alternate view"
+              loading="lazy"
+              onclick="openLightbox(this.src, '${escapeForAttribute(product.name)}')"
+            >
+          ` : ""}
+        </div>
         ${thumbnailHtml}
         <h3>${product.name}</h3>
         <p class="price">TTD ${product.ttd.toLocaleString()} | USD ${product.usd.toLocaleString()}</p>
