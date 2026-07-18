@@ -3,121 +3,217 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estate & Silk W.I.</title>
+<title>Estate & Silk | Luxury House</title>
 
 <script src="https://www.paypal.com/sdk/js?client-id=BAADzJ8R29EQb1-tEoUe_36Q0jOeYuzXrp5FXeJBuHCN6xE6mZByzcPFvo7jFMm07hNFZg_5K7lty0ZBnI&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
 
+
 <style>
+:root {
+  --ivory: #f7f3ee;
+  --paper: #fffdf9;
+  --ink: #2f2a25;
+  --taupe: #7d6f61;
+  --line: #ded5ca;
+  --accent: #6b5845;
+  --soft: rgba(255,253,249,0.88);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: Georgia, 'Times New Roman', serif;
-  background:
-    linear-gradient(rgba(246,239,231,0.78), rgba(246,239,231,0.78)),
-    url("Post 1 IG.png");
-  background-size: cover;
-  background-position: center top;
-  background-attachment: fixed;
-  color: #6d5c45;
+  font-family: Georgia, "Times New Roman", serif;
+  background: var(--ivory);
+  color: var(--ink);
 }
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 26px 50px;
-  background: rgba(246,239,231,0.86);
-  border-bottom: 1px solid #e8e0d6;
-  backdrop-filter: blur(6px);
+  padding: 20px 48px;
+  background: rgba(247,243,238,0.94);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-nav h3 {
+.brand-lockup {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.brand-lockup strong {
   letter-spacing: 5px;
   font-weight: 400;
-  margin: 0;
+  font-size: 17px;
+}
+
+.brand-lockup span {
+  margin-top: 5px;
+  letter-spacing: 2.5px;
+  font-size: 10px;
+  color: var(--taupe);
 }
 
 nav a {
   margin-left: 24px;
   text-decoration: none;
-  color: #7a684f;
-  font-size: 14px;
+  color: var(--ink);
+  font-size: 13px;
+  letter-spacing: 0.6px;
+}
+
+nav a:hover {
+  color: var(--accent);
 }
 
 .hero {
-  min-height: 75vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 78vh;
+  display: grid;
+  place-items: center;
   text-align: center;
-  padding: 40px 20px;
+  padding: 80px 20px;
+  background:
+    linear-gradient(rgba(247,243,238,0.78), rgba(247,243,238,0.92)),
+    url("Post 1 IG.png") center/cover no-repeat;
 }
 
 .hero-content {
   max-width: 850px;
-  background: rgba(251,247,242,0.62);
-  padding: 50px 35px;
-  border-radius: 26px;
+  background: rgba(255,253,249,0.72);
+  border: 1px solid rgba(222,213,202,0.9);
+  padding: 58px 48px;
+  box-shadow: 0 24px 70px rgba(69,54,40,0.10);
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--taupe);
+  margin-bottom: 18px;
 }
 
 .hero h1 {
-  font-size: 46px;
+  font-size: clamp(42px, 7vw, 72px);
   font-weight: 400;
-  letter-spacing: 6px;
+  letter-spacing: 7px;
+  margin: 0 0 20px;
 }
 
-.hero p {
-  font-size: 22px;
-  line-height: 1.7;
-  color: #7a684f;
+.hero .lead {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 19px;
+  line-height: 1.8;
+  color: #5f554b;
+}
+
+.hero-actions {
+  margin-top: 30px;
+}
+
+.values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 34px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.value {
+  text-align: center;
+  padding: 10px 24px;
+}
+
+.value + .value {
+  border-left: 1px solid var(--line);
+}
+
+.value strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.value span {
+  font-size: 13px;
+  color: var(--taupe);
 }
 
 .section-title {
   text-align: center;
-  font-size: 36px;
+  font-size: 34px;
   font-weight: 400;
   letter-spacing: 2px;
-  margin: 60px 0 20px;
+  margin: 72px 0 18px;
+}
+
+.section-intro {
+  max-width: 650px;
+  margin: 0 auto 18px;
+  text-align: center;
+  color: var(--taupe);
+  line-height: 1.7;
+  padding: 0 20px;
 }
 
 .products {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 290px));
   justify-content: center;
-  gap: 34px;
-  padding: 40px 30px 100px;
+  gap: 28px;
+  padding: 36px 28px 100px;
 }
 
 .card {
-  background: rgba(251,247,242,0.9);
-  border: 1px solid #e8e0d6;
-  border-radius: 24px;
-  width: 290px;
-  padding: 20px;
-  box-shadow: 0 18px 45px rgba(160,140,110,0.12);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  width: 100%;
+  padding: 16px;
+  box-shadow: 0 14px 36px rgba(69,54,40,0.08);
   text-align: center;
   position: relative;
 }
 
-.card img {
+.card > img {
   width: 100%;
-  border-radius: 18px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #f2eee8;
 }
 
 .card h3 {
   font-weight: 400;
+  font-size: 18px;
+  line-height: 1.35;
+  min-height: 48px;
 }
 
 .price {
-  color: #6d5c45;
+  color: var(--accent);
+  font-size: 14px;
 }
 
 details {
   margin-top: 10px;
   font-size: 14px;
-  color: #7a6d5a;
+  color: var(--taupe);
+}
+
+details summary {
+  cursor: pointer;
 }
 
 .thumbs {
@@ -128,80 +224,84 @@ details {
 }
 
 .thumbs img {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   object-fit: cover;
-  border-radius: 8px;
   cursor: pointer;
-  border: 1px solid #e8e0d6;
-  opacity: 0.8;
+  border: 1px solid var(--line);
+  opacity: 0.82;
 }
 
 .btn {
   display: inline-block;
   margin-top: 14px;
   padding: 12px 24px;
-  border-radius: 40px;
+  border-radius: 0;
   text-decoration: none;
-  font-size: 14px;
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
   cursor: pointer;
-  border: none;
+  border: 1px solid var(--accent);
 }
 
 .btn-dark {
-  background: #6d5c45;
+  background: var(--accent);
   color: white;
+}
+
+.btn-dark:hover {
+  background: #594836;
 }
 
 .btn-sold {
   background: #b8aa99;
+  border-color: #b8aa99;
   color: white;
   cursor: not-allowed;
 }
 
 .badge {
   position: absolute;
-  top: 18px;
-  left: 18px;
-  background: rgba(109,92,69,0.9);
+  top: 24px;
+  left: 24px;
+  background: rgba(47,42,37,0.88);
   color: white;
-  padding: 7px 12px;
-  border-radius: 20px;
-  font-size: 11px;
+  padding: 7px 11px;
+  font-size: 10px;
   letter-spacing: 1px;
 }
 
 .cart-section,
-.policy-section {
-  background: rgba(251,247,242,0.92);
-  color: #6d5c45;
-  padding: 90px 20px;
+.policy-section,
+#contact {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 80px 20px;
   text-align: center;
-  border-top: 1px solid #e8e0d6;
+  border-top: 1px solid var(--line);
 }
 
 .cart-box,
 .policy-box {
-  max-width: 760px;
+  max-width: 780px;
   margin: 0 auto;
-  background: rgba(255,255,255,0.5);
-  border: 1px solid #e8e0d6;
-  border-radius: 24px;
+  background: #fbf8f4;
+  border: 1px solid var(--line);
   padding: 30px;
-  box-shadow: 0 18px 45px rgba(160,140,110,0.12);
 }
 
 .cart-section .btn {
-  max-width: 300px;
+  max-width: 320px;
   width: 100%;
-  box-sizing: border-box;
   text-align: center;
 }
 
 .cart-total {
   margin-top: 18px;
   padding-top: 14px;
-  border-top: 1px solid #e8e0d6;
+  border-top: 1px solid var(--line);
   font-size: 15px;
   line-height: 1.6;
 }
@@ -209,16 +309,16 @@ details {
 .bank-box,
 .buyer-box {
   background: white;
-  color: #6d5c45;
-  padding: 16px;
-  border-radius: 16px;
-  margin-top: 12px;
+  color: var(--ink);
+  padding: 18px;
+  margin-top: 14px;
   text-align: left;
+  border: 1px solid var(--line);
 }
 
 .policy-item {
   text-align: left;
-  border-bottom: 1px solid #e8e0d6;
+  border-bottom: 1px solid var(--line);
   padding: 18px 0;
 }
 
@@ -227,58 +327,56 @@ details {
 }
 
 .policy-item summary {
-  cursor: pointer;
-  font-size: 18px;
-  color: #6d5c45;
-  letter-spacing: 1px;
+  font-size: 17px;
+  color: var(--ink);
+  letter-spacing: 0.6px;
 }
 
 .policy-item p {
-  line-height: 1.7;
-  color: #7a684f;
-  font-size: 15px;
-}
-
-#contact {
-  background: rgba(251,247,242,0.9);
-  text-align: center;
-  padding: 90px 20px;
-  border-top: 1px solid #e8e0d6;
+  line-height: 1.75;
+  color: var(--taupe);
+  font-size: 14px;
 }
 
 #contact a,
 .policy-section a {
-  color: #6d5c45;
+  color: var(--accent);
   text-decoration: none;
-  font-size: 18px;
 }
+
 .ig-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 18px;
-  color: #6d5c45;
+  color: var(--accent);
   text-decoration: none;
 }
 
-.ig-link:hover {
-  opacity: 0.7;
+.disclaimer {
+  font-size: 12px;
+  color: #8a7a67;
+  max-width: 720px;
+  margin: 34px auto 8px;
+  text-align: center;
+  line-height: 1.7;
+  padding: 0 20px;
 }
+
 footer {
   text-align: center;
-  padding: 25px;
-  font-size: 13px;
+  padding: 24px;
+  font-size: 12px;
   color: #8a7a67;
 }
 
 @media (max-width: 768px) {
   nav {
     flex-direction: column;
-    gap: 12px;
-    padding: 20px;
+    gap: 14px;
+    padding: 18px 16px;
   }
 
-  nav div {
+  nav div:last-child {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -289,25 +387,47 @@ footer {
     margin-left: 0;
   }
 
-  .hero h1 {
-    font-size: 34px;
+  .hero {
+    min-height: 70vh;
+    padding: 56px 16px;
   }
 
-  .hero p {
-    font-size: 18px;
+  .hero-content {
+    padding: 42px 24px;
+  }
+
+  .hero h1 {
+    letter-spacing: 4px;
+  }
+
+  .hero .lead {
+    font-size: 17px;
+  }
+
+  .values {
+    grid-template-columns: 1fr;
+  }
+
+  .value + .value {
+    border-left: none;
+    border-top: 1px solid var(--line);
   }
 }
 </style>
+
 </head>
 
 <body>
 
 <nav>
-  <h3>ESTATE & SILK W.I.</h3>
+  <div class="brand-lockup">
+    <strong>ESTATE &amp; SILK</strong>
+    <span>LUXURY HOUSE</span>
+  </div>
   <div>
     <a href="#home">Home</a>
-    <a href="#shop">Shop Now</a>
-    <a href="#cart">🛒 My Cart</a>
+    <a href="#shop">Shop</a>
+    <a href="#cart">Cart</a>
     <a href="#policies">Policies</a>
     <a href="#contact">Contact</a>
   </div>
@@ -315,16 +435,38 @@ footer {
 
 <section id="home" class="hero">
   <div class="hero-content">
-    <h1>ESTATE & SILK W.I.</h1>
-    <p>
-     Estate & Silk celebrates authentic luxury through conscious ownership. Our collection of handbags, accessories, shoes, jewelry, and beauty is thoughtfully chosen to extend the life of exceptional pieces while honoring the heritage, craftsmanship, and artistry behind each one. <br>
-      We believe luxury should endure—to be treasured, appreciated, and passed on with confidence. Every piece we offer is 100% authentic.
+    <div class="eyebrow">A MODERN LUXURY HOUSE</div>
+    <h1>ESTATE &amp; SILK</h1>
+    <p class="lead">
+      Estate &amp; Silk celebrates authentic luxury through conscious ownership.
+      Our collection is thoughtfully chosen to extend the life of exceptional pieces
+      while honoring the heritage, craftsmanship, and artistry behind each one.
+      We believe luxury should endure—to be treasured, appreciated, and passed on with confidence.
     </p>
+    <div class="hero-actions">
+      <a href="#shop" class="btn btn-dark">Shop the Collection</a>
+    </div>
+  </div>
+</section>
+
+<section class="values" aria-label="Estate and Silk values">
+  <div class="value">
+    <strong>100% Authentic</strong>
+    <span>Every piece is reviewed before it is offered.</span>
+  </div>
+  <div class="value">
+    <strong>Thoughtfully Chosen</strong>
+    <span>Distinctive pieces selected for beauty, quality, and lasting appeal.</span>
+  </div>
+  <div class="value">
+    <strong>Luxury That Endures</strong>
+    <span>New and previously owned pieces made to be enjoyed beyond one season.</span>
   </div>
 </section>
 
 <section id="shop">
-  <h2 class="section-title">Shop Our Collection</h2>
+  <h2 class="section-title">Shop the Collection</h2>
+  <p class="section-intro">Discover new and previously owned designer pieces selected for their beauty, quality, and enduring appeal.</p>
   <div class="products" id="products"></div>
 </section>
 
@@ -400,10 +542,10 @@ footer {
     <details class="policy-item">
       <summary>Terms & Conditions</summary>
       <p>
-        By accessing and purchasing from Estate & Silk W.I., you agree to the following terms. All items are to the best of our knowledge 100% authentic. Each piece is either new or pre-owned and described to the best of our knowledge.
+        By accessing and purchasing from Estate & Silk, you agree to the following terms. Every item offered is represented as 100% authentic and described to the best of our knowledge. Each piece is either new or pre-owned and described to the best of our knowledge.
       </p>
       <p>
-        All sales are considered final once payment has been received and confirmed. Estate & Silk W.I. reserves the right to refuse or cancel any order at our discretion, including in cases of pricing errors, item unavailability, or suspected misuse.
+        All sales are considered final once payment has been received and confirmed. Estate & Silk reserves the right to refuse or cancel any order at our discretion, including in cases of pricing errors, item unavailability, or suspected misuse.
       </p>
       <p>
         By placing an order, you agree to provide accurate contact, payment, and delivery information.
@@ -419,14 +561,14 @@ footer {
         Payments may be made via PayPal, online bank transfer in TTD, email checkout, WhatsApp inquiry, or other agreed payment methods.
       </p>
       <p>
-        Orders will only be processed and released once full payment has been received, cleared, and confirmed. Estate & Silk W.I. is not responsible for any additional fees charged by payment providers, banks, or third-party platforms.
+        Orders will only be processed and released once full payment has been received, cleared, and confirmed. Estate & Silk is not responsible for any additional fees charged by payment providers, banks, or third-party platforms.
       </p>
     </details>
 
     <details class="policy-item">
       <summary>Authenticity Policy</summary>
       <p>
-        Estate & Silk W.I. is committed to offering 100% authentic luxury resale pieces. Each item is reviewed prior to sale.
+        Estate & Silk is committed to offering 100% authentic new and previously owned luxury pieces. Each item is reviewed prior to sale.
       </p>
       <p>
         We do not knowingly sell counterfeit goods. If you require additional images, details, or documentation before purchase, please contact us prior to checkout.
@@ -442,7 +584,7 @@ footer {
         Kindly note that deliveries can only be sent out once payment has been cleared and confirmed.
       </p>
       <p>
-        Estate & Silk W.I. is not responsible for delays caused by couriers, customs, weather, public holidays, or other unforeseen circumstances. Risk of loss transfers to the buyer once the item has been shipped, dispatched, or delivered.
+        Estate & Silk is not responsible for delays caused by couriers, customs, weather, public holidays, or other unforeseen circumstances. Risk of loss transfers to the buyer once the item has been shipped, dispatched, or delivered.
       </p>
     </details>
 
@@ -459,7 +601,7 @@ footer {
     <details class="policy-item">
       <summary>Privacy Policy</summary>
       <p>
-        Estate & Silk W.I. respects your privacy. Any personal information collected, including name, email address, phone number, delivery details, and order details, will be used solely for order processing, customer communication, delivery coordination, and purchase verification.
+        Estate & Silk respects your privacy. Any personal information collected, including name, email address, phone number, delivery details, and order details, will be used solely for order processing, customer communication, delivery coordination, and purchase verification.
       </p>
       <p>
         We do not sell, share, or distribute your personal information to third parties, except where required to complete your order, process payment, or comply with applicable requirements.
@@ -484,12 +626,12 @@ footer {
 </a></p>
 </section>
   
-<p style="font-size:13px; color:#8a7a67; max-width:600px; margin:40px auto 10px; text-align:center; line-height:1.6;">
+<p class="disclaimer">
 Estate & Silk is an independent luxury reseller and is not affiliated with, endorsed by, or sponsored by any designer brands featured. All trademarks remain the property of their respective owners.
 </p>
   
 <footer>
-  Estate & Silk W.I. @2026
+  © 2026 Estate & Silk
 </footer>
 
 <script>
@@ -625,7 +767,7 @@ const products = [
     available: true
   },
   {
-    id: "gucci",
+    id: "gucciophidia",
     name: "Gucci Calfskin Mini Ophidia Flap Shoulder Bag",
     image: "gucci.jpg.png",
     thumbnails: [],
@@ -708,7 +850,7 @@ function renderProducts() {
     const thumbnailHtml = product.thumbnails.length
       ? `<div class="thumbs">
           ${product.thumbnails.map(img =>
-            `<img src="${img}" onclick="changeImage('${mainImageId}', this.src)">`
+            `<img src="${img}" alt="${product.name} alternate view" onclick="changeImage('${mainImageId}', this.src)">`
           ).join("")}
         </div>`
       : "";
@@ -724,7 +866,7 @@ function renderProducts() {
     return `
       <div class="card">
         ${badgeHtml}
-        <img id="${mainImageId}" src="${product.image}">
+        <img id="${mainImageId}" src="${product.image}" alt="${product.name}" loading="lazy">
         ${thumbnailHtml}
         <h3>${product.name}</h3>
         <p class="price">TTD ${product.ttd.toLocaleString()} | USD ${product.usd.toLocaleString()}</p>
