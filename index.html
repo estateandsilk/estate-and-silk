@@ -80,17 +80,34 @@ nav a:hover {
   min-height: 70vh;
   display: grid;
   place-items: center;
+  position: relative;
+  overflow: hidden;
   text-align: center;
   padding: 100px 20px;
   background: var(--paper);
   border-bottom: 1px solid var(--line);
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("estate-silk-monogram.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: min(720px, 88vw);
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .hero-content {
+  position: relative;
+  z-index: 1;
   max-width: 850px;
-  background: transparent;
+  padding: 30px;
+  background: rgba(255, 254, 251, 0.72);
   border: none;
-  padding: 20px 30px;
   box-shadow: none;
 }
 
