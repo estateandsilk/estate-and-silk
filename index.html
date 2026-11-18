@@ -1472,6 +1472,16 @@ function renderProducts() {
   container.innerHTML = filteredProducts.map(productCard).join("");
 }
 
+function usdSuffix(usd) {
+  return Number.isFinite(usd) ? " | USD " + usd.toLocaleString() : "";
+}
+
+function cartTotalUSD() {
+  return cart.every(item => Number.isFinite(item.usd))
+    ? cart.reduce((sum, item) => sum + item.usd, 0)
+    : null;
+}
+
 function productCard(product) {
     const mainImageId = product.id + "-main";
 
@@ -1485,7 +1495,7 @@ function productCard(product) {
       : "";
 
     const buttonHtml = product.available
-      ? `<button class="btn btn-dark" onclick="addToCart('${escapeForAttribute(product.name)}', ${product.ttd}, ${product.usd})">Add to Cart</button>`
+      ? `<button class="btn btn-dark" onclick="addToCart('${escapeForAttribute(product.name)}', ${product.ttd}, ${product.usd ?? null})">Add to Cart</button>`
       : "";
 
     const badgeHtml = product.available
@@ -1516,7 +1526,7 @@ function productCard(product) {
         </div>
         ${thumbnailHtml}
         <h3>${product.name}</h3>
-        <p class="price">TTD ${product.ttd.toLocaleString()} | USD ${product.usd.toLocaleString()}</p>
+        <p class="price">TTD ${product.ttd.toLocaleString()}${usdSuffix(product.usd)}</p>
         <details>
           <summary>View Details</summary>
           ${product.details}
@@ -1545,16 +1555,16 @@ function updateCart() {
 
   cartDisplay.innerHTML = cart.map((item, index) =>
     "• " + item.name + "<br><span style='font-size:13px;'>TTD " +
-    item.ttd.toLocaleString() + " | USD " + item.usd.toLocaleString() +
+    item.ttd.toLocaleString() + usdSuffix(item.usd) +
     "</span> <button onclick='removeItem(" + index + ")' style='margin-left:8px;'>x</button>"
   ).join("<br><br>");
 
   const totalTTD = cart.reduce((sum, item) => sum + item.ttd, 0);
-  const totalUSD = cart.reduce((sum, item) => sum + item.usd, 0);
+  const totalUSD = cartTotalUSD();
 
   cartTotal.innerHTML =
     "<strong>Total:</strong><br>TTD " + totalTTD.toLocaleString() +
-    " | USD " + totalUSD.toLocaleString();
+    usdSuffix(totalUSD);
 }
 
 function removeItem(index) {
@@ -1594,7 +1604,7 @@ function emailCheckout() {
   }
 
   const totalTTD = cart.reduce((sum, item) => sum + item.ttd, 0);
-  const totalUSD = cart.reduce((sum, item) => sum + item.usd, 0);
+  const totalUSD = cartTotalUSD();
 
   const email = "estateandsilk@gmail.com";
   const subject = "New Order - " + cart.map(item => item.name).join(", ");
@@ -1603,11 +1613,11 @@ function emailCheckout() {
 
   cart.forEach(item => {
     body += "• " + item.name + " - TTD " + item.ttd.toLocaleString() +
-            " | USD " + item.usd.toLocaleString() + "\n";
+            usdSuffix(item.usd) + "\n";
   });
 
   body += "\nTotal: TTD " + totalTTD.toLocaleString() +
-          " | USD " + totalUSD.toLocaleString();
+          usdSuffix(totalUSD);
 
   body += "\n\nThank you.";
 
@@ -1619,17 +1629,17 @@ function emailCheckout() {
 
 function updateWhatsAppLink() {
   const totalTTD = cart.reduce((sum, item) => sum + item.ttd, 0);
-  const totalUSD = cart.reduce((sum, item) => sum + item.usd, 0);
+  const totalUSD = cartTotalUSD();
 
   let message = "Hello, I would like to purchase the following items:%0A%0A";
 
   cart.forEach(item => {
     message += "• " + item.name + " - TTD " + item.ttd.toLocaleString() +
-               " | USD " + item.usd.toLocaleString() + "%0A";
+               usdSuffix(item.usd) + "%0A";
   });
 
   message += "%0ATotal: TTD " + totalTTD.toLocaleString() +
-             " | USD " + totalUSD.toLocaleString();
+             usdSuffix(totalUSD);
 
   document.getElementById("whatsapp-link").href =
     "https://wa.me/13058124683?text=" + message;
