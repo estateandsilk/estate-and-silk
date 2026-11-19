@@ -1149,26 +1149,28 @@ const beautyProducts = [
     image: "Luminizers3.png",
     thumbnails: [],
     ttd: 750,
-    details: ".",
+    details: "Highlighter Powder - Long Wear with Hyaluronic Acid - Various Colours (Inquire for Instock items or Preorder)",
     available: true
   },
    {
     id: "beauty-004",
-    name: "Dior -Forever Glow Luminizer - Limited Edition",
+    name: "Dior -Forever Glow Luminizer - Limited Editions",
     image: "Luminizers2.png",
     thumbnails: [],
     ttd: 975,
-    details: ".",
+    details: "Highlighter - Longwear. These are limited edition highlighters only available for a season in limited quantities",
     available: true
   },
-   {
-    id: "beauty-005",
-    name: "Holiday Gift Sets 2026",
-    image: "Giftset1.png",
-    thumbnails: [],
-    ttd: 1200,
-    details: "Dior Holiday sets 2026 Edition - PREORDER ONLY",
-    available: true
+{
+  id: "beauty-005",
+  name: "Dior Holiday Gift Set",
+  image: "Giftset1.png",
+  thumbnails: [],
+  ttd: null,
+  priceDisplay: "request",
+  orderType: "enquire",
+  details: "Dior Holiday Gift Set — available to order.",
+  available: true
   }
 ];
 const products = [
@@ -1530,10 +1532,27 @@ function productCard(product) {
         </div>`
       : "";
 
-    const buttonHtml = product.available
-      ? `<button class="btn btn-dark" onclick="addToCart('${escapeForAttribute(product.name)}', ${product.ttd}, ${product.usd ?? null})">Add to Cart</button>`
-      : "";
+   const enquiryType = product.orderType === "enquire" || product.orderType === "preorder";
 
+const enquiryLabel = product.orderType === "preorder"
+  ? "Enquire to Pre-Order"
+  : "Enquire to Order";
+
+const enquiryMessage = `Hello, I'm interested in ordering the ${product.name}. Could you please provide pricing and availability?`;
+
+const enquiryUrl = `https://wa.me/13058124683?text=${encodeURIComponent(enquiryMessage)}`;
+
+const buttonHtml = product.available
+  ? enquiryType
+    ? `<a class="btn btn-dark" href="${enquiryUrl}" target="_blank" rel="noopener noreferrer">${enquiryLabel}</a>`
+    : `<button class="btn btn-dark" onclick="addToCart('${escapeForAttribute(product.name)}', ${product.ttd}, ${product.usd ?? null})">Add to Cart</button>`
+  : "";
+  
+const priceHtml = product.priceDisplay === "request"
+  ? "Price on Request"
+  : product.priceDisplay === "ttd"
+    ? `TTD ${product.ttd.toLocaleString()}`
+    : `TTD ${product.ttd.toLocaleString()}${usdSuffix(product.usd)}`;
     const badgeHtml = product.available
       ? ""
       : `<div class="badge">Sold Out</div>`;
@@ -1562,7 +1581,7 @@ function productCard(product) {
         </div>
         ${thumbnailHtml}
         <h3>${product.name}</h3>
-        <p class="price">TTD ${product.ttd.toLocaleString()}${usdSuffix(product.usd)}</p>
+       <p class="price">${priceHtml}</p>
         <details>
           <summary>View Details</summary>
           ${product.details}
